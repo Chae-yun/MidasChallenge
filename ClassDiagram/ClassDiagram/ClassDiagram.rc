@@ -505,14 +505,14 @@ END
 
 STRINGTABLE
 BEGIN
-    IDR_MAINFRAME           "ClassDiagram"
+    IDR_MAINFRAME           "Midas Study Simple Class Diagram"
     IDR_ClassDiagramTYPE    "\nClassDiagram\nClassDiagram\n\n\nClassDiagram.Document\nClassDiagram.Document"
     ID_WINDOW_MANAGER       "√¢(&W)..."
 END
 
 STRINGTABLE
 BEGIN
-    AFX_IDS_APP_TITLE       "ClassDiagram"
+    AFX_IDS_APP_TITLE       "Midas Study Simple Class Diagram"
     AFX_IDS_IDLEMESSAGE     "¡ÿ∫Ò"
 END
 
