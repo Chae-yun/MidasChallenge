@@ -15,6 +15,10 @@
 *.userprefs
 
 # Build results
+ClassDiagram/ClassDiagram/Debug/
+ClassDiagram/ClassDiagram/x64/
+ClassDiagram/x64/
+ClassDiagram/.vs/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
