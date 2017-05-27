@@ -5,7 +5,7 @@ class DMakeclass :
 {
 public:
 	DMakeclass() {
-		m_draw_mode = CLASS_MODE;
+		m_diagram_mode = CLASS_MODE;
 	};
 	~DMakeclass() {};
 	Rect m_rect;
@@ -18,15 +18,7 @@ public:
 		
 		graphics.DrawRectangle(&pen, m_rect);
 	};
-	void Swap(int *n1, int *n2) {
-		int temp;
-		temp = *n1;
-		*n1 = *n2;
-		*n2 = temp;
-	};
-	void Setclick(bool flag) {
-		m_diagram_select = flag;
-	};
+
 	void SetRect(int x, int y, int width, int height) {
 		m_rect.Width = width;
 		m_rect.Height = height;

@@ -45,7 +45,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -190,7 +190,6 @@
     <ClInclude Include="ClassDiagram.h" />
     <ClInclude Include="ClassDiagramDoc.h" />
     <ClInclude Include="ClassDiagramView.h" />
-    <ClInclude Include="ClassDlg.h" />
     <ClInclude Include="DDependline.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="DExtendline.h" />
@@ -206,9 +205,6 @@
     <ClCompile Include="ClassDiagram.cpp" />
     <ClCompile Include="ClassDiagramDoc.cpp" />
     <ClCompile Include="ClassDiagramView.cpp" />
-    <ClCompile Include="ClassDlg.cpp" />
-    <ClCompile Include="DDependline.cpp" />
-    <ClCompile Include="DExtendline.cpp" />
     <ClCompile Include="Diagram.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -222,25 +218,9 @@
     <ResourceCompile Include="ClassDiagram.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\01.bmp" />
-    <Image Include="res\01.ico" />
-    <Image Include="res\02.ico" />
-    <Image Include="res\03.ico" />
-    <Image Include="res\04.ico" />
-    <Image Include="res\05.ico" />
-    <Image Include="res\06.ico" />
-    <Image Include="res\07.ico" />
-    <Image Include="res\08.ico" />
-    <Image Include="res\09.ico" />
-    <Image Include="res\10.ico" />
-    <Image Include="res\11.ico" />
-    <Image Include="res\12.ico" />
-    <Image Include="res\13.ico" />
     <Image Include="res\add_attribute.ico" />
-    <Image Include="res\bitmap1.bmp" />
     <Image Include="res\ClassDiagram.ico" />
     <Image Include="res\ClassDiagramDoc.ico" />
-    <Image Include="res\icon1.ico" />
     <Image Include="res\Toolbar.bmp" />
     <Image Include="res\Toolbar256.bmp" />
     <Image Include="UserImages.bmp" />

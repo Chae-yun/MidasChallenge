@@ -39,13 +39,15 @@ BEGIN_MESSAGE_MAP(CClassDiagramView, CView)
 	ON_COMMAND(ID_DELETE, &CClassDiagramView::OnDelete)
 	ON_WM_MOUSEMOVE()
 	ON_WM_LBUTTONDOWN()
+	ON_COMMAND(ID_MOVE, &CClassDiagramView::OnMove)
 END_MESSAGE_MAP()
 
 // CClassDiagramView 생성/소멸
 
 CClassDiagramView::CClassDiagramView()
 	: m_ptPrev(0)
-	, m_draw_mode(0)
+	, m_draw_mode(-1)
+	, m_selectcnt(0)
 {
 	// TODO: 여기에 생성 코드를 추가합니다.
 
@@ -72,7 +74,6 @@ void CClassDiagramView::OnDraw(CDC* pDC)
 	if (!pDoc)
 		return;
 
-
 	CDC MemDC;
 	CBitmap* pOldBitmap;
 	CBitmap bmp;
@@ -89,19 +90,18 @@ void CClassDiagramView::OnDraw(CDC* pDC)
 	while (ps) {
 		Diagram *diagram;
 		diagram = m_list.GetAt(ps);
-		if (diagram->m_draw_mode == CLASS_MODE) {
+		if (diagram->m_diagram_mode == CLASS_MODE) {
 			DMakeclass *makeclass = (DMakeclass *)diagram;
 			makeclass->Draw(&MemDC);
 		}
-		/*if (diagram->m_draw_mode == DEPEND_MODE) {
-			DDependline *dependline = (DDependline *)diagram;
-			DDependline->Draw(&MemDC);
-		}
-		if (diagram->m_draw_mode == EXTEND_MODE) {
+		if (diagram->m_diagram_mode == EXTEND_MODE) {
 			DExtendline *extendline = (DExtendline *)diagram;
 			extendline->Draw(&MemDC);
-		}*/
-		
+		}
+		if (diagram->m_diagram_mode == DEPEND_MODE) {
+			DDependline *dependline = (DDependline *)diagram;
+			dependline->Draw(&MemDC);
+		}
 		m_list.GetNext(ps);
 	}
 
@@ -109,7 +109,6 @@ void CClassDiagramView::OnDraw(CDC* pDC)
 
 	MemDC.SelectObject(pOldBitmap);
 	MemDC.DeleteDC();
-	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
 }
 
 
@@ -196,7 +195,7 @@ void CClassDiagramView::OnBitmap()
 
 void CClassDiagramView::OnClass()
 {
-	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	m_draw_mode = CLASS_MODE;
 }
 
 
@@ -214,26 +213,25 @@ void CClassDiagramView::OnOperation()
 
 void CClassDiagramView::OnExtend()
 {
-	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	m_draw_mode = EXTEND_MODE;
 }
 
 
 void CClassDiagramView::OnDepend()
 {
-	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	m_draw_mode = DEPEND_MODE;
 }
 
 
 void CClassDiagramView::OnDelete()
 {
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.
-	class_dlg.DoModal();
 }
 
 void CClassDiagramView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
-	if (m_draw_mode == CLASS_MODE && nFlags == MK_LBUTTON) { //원그릴때
+	if (m_draw_mode == CLASS_MODE && nFlags == MK_LBUTTON) { //사각형그릴때
 		DMakeclass *makeclass = new DMakeclass();
 		makeclass->SetRect(m_ptPrev.x, m_ptPrev.y, point.x - m_ptPrev.x, point.y - m_ptPrev.y);
 
@@ -251,19 +249,68 @@ void CClassDiagramView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	m_ptPrev = point;
-	AddDiagramList();
+	AddDiagramList(point);
 	CView::OnLButtonDown(nFlags, point);
 }
 
 
-void CClassDiagramView::AddDiagramList()
+void CClassDiagramView::AddDiagramList(CPoint point)
 {
 	if (m_draw_mode == CLASS_MODE) {
 		DMakeclass *makeclass = new DMakeclass();
 		m_list.AddTail((Diagram *)makeclass);
 	}
-	/*else if (m_draw_mode == EXTEND_MODE) {
-		DExtendline *extendline = new DExtendline();
-		m_list.AddTail((Diagram *)extendline);
+	if (m_draw_mode == EXTEND_MODE) {
+		POSITION ps = m_list.GetTailPosition();
+		Diagram *diagram;
+		while (ps) {
+			diagram = m_list.GetAt(ps);
+			if (diagram->m_diagram_mode == CLASS_MODE) {
+				DMakeclass *class1 = (DMakeclass*)diagram;
+				if (class1->m_rect.Contains(point.x, point.y)) {
+					if (ps != m_Prev_ps) {
+						m_selectcnt++;
+						if (m_selectcnt == 2) {
+							diagram = m_list.GetAt(m_Prev_ps);
+							DMakeclass *class2 = (DMakeclass *)diagram;
+							DExtendline *extendline = new DExtendline;
+							extendline->SetPoint( 
+								class2->m_rect.X + (class2->m_rect.Width / 2),
+								class2->m_rect.Y,
+								class1->m_rect.X + (class1->m_rect.Width / 2),
+								class1->m_rect.Y + class1->m_rect.Height);
+							//TRACE("s%d %d e%d %d\n", class1->m_rect.X, class1->m_rect.Y, class2->m_rect.X, class2->m_rect.Y);
+							m_list.AddTail((Diagram *)extendline);
+							Invalidate(FALSE);
+							m_selectcnt = 0;
+							m_Prev_ps = NULL;
+							break;
+						}
+						else {
+							m_Prev_ps = ps;
+							break;
+						}
+					}
+				}
+			}
+			m_list.GetPrev(ps);
+		}
+	}
+	/*while (ps) {
+		shape = m_list.GetAt(ps);
+		shape->Setclick(false);
+		m_list.GetNext(ps);
+	}
+	ps = m_list.GetTailPosition();
+
+	while (ps) {
+		if (SetORRelease(point, ps))
+			break;
+		m_list.GetPrev(ps);
 	}*/
+}
+
+void CClassDiagramView::OnMove()
+{
+	m_draw_mode = NONE;
 }

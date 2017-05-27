@@ -12,17 +12,18 @@ class Diagram : public CWnd
 public:
 	Diagram();
 	virtual ~Diagram();
-	virtual void Draw(CDC *MemDC)=0; //MemDC에 그리는 함수
-	void Swap(int *n1, int *n2) {
-		int temp;
-		temp = *n1;
-		*n1 = *n2;
-		*n2 = temp;
+	void Swap(void *n1, void *n2) {
+		void *temp;
+		temp = n1;
+		n1 = n2;
+		n2 = temp;
 	};
+	virtual void Draw(CDC *MemDC)=0; //MemDC에 그리는 함수
+
 	void Setclick(bool flag) {
 		m_diagram_select = flag;
 	};
-	int m_draw_mode;
+	int m_diagram_mode;
 	bool m_diagram_select = false; // 체크되었는지 안되어있는지 확인
 	Rect m_selectRect;
 protected:
