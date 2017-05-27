@@ -373,7 +373,6 @@ void CClassDiagramView::OnLButtonDblClk(UINT nFlags, CPoint point)
 			if (diagram->m_diagram_mode == CLASS_MODE) {
 				DMakeclass *class1 = (DMakeclass*)diagram;
 				if (class1->m_rect.Contains(point.x, point.y)) {
-					//m_class_dlg.SetStringAt(at);
 					m_class_dlg.DoModal();
 				}
 			}

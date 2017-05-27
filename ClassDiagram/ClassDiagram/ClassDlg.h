@@ -32,7 +32,9 @@ public:
 	CListBox m_list_op;
 	afx_msg void OnBnClickedOpAdd();
 	afx_msg void OnBnClickedOpDel();
-	afx_msg void SetStringAt(CString &s);
-	afx_msg void SetStringOp(CString &s);
-	CString s;
+	afx_msg void OnBnClickedOk();
+	CString m_class_name;
+	CString class_name;
+	CString at;
+	CString op;
 };
