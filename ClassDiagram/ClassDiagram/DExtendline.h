@@ -27,12 +27,6 @@ public:
 		if (m_startPoint.X > m_endPoint.X)
 			Swap(&m_startPoint, &m_endPoint);
 	}
-	/*void PointCloser(Rect startPoint, Rect endPoint) {
-		int min = sqrt(pow(startPoint.X+(startPoint.Width/2) - endPoint.X+(endPoint.Width/2), 2) + pow(startPoint.Y - endPoint.Y, 2));
-		if (sqrt(pow(startPoint.X + (startPoint.Width / 2) - endPoint.X, 2) + pow(startPoint.Y - endPoint.Y + (endPoint.Height / 2), 2)) < min)
-			min = sqrt(pow(startPoint.X + (startPoint.Width / 2) - endPoint.X, 2) + pow(startPoint.Y - endPoint.Y + (endPoint.Height / 2), 2));
-		if(sqrt(pow(startPoint.X + (startPoint.Width / 2) - endPoint.X, 2) + pow(startPoint.Y - endPoint.Y + (endPoint.Height / 2), 2)) < min)
-	}*/
 	~DExtendline() {};
 };
 

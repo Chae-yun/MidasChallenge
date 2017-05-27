@@ -17,6 +17,9 @@ public:
 		Pen pen(Color(clr), 2);
 		
 		graphics.DrawRectangle(&pen, m_rect);
+		graphics.DrawLine(&pen, m_rect.X + (m_rect.Width), m_rect.Y + (m_rect.Height / 3), m_rect.X, m_rect.Y + (m_rect.Height / 3));
+		graphics.DrawLine(&pen, m_rect.X + (m_rect.Width), m_rect.Y + (m_rect.Height * 2 / 3), m_rect.X, m_rect.Y + (m_rect.Height * 2 / 3));
+	
 	};
 
 	void SetRect(int x, int y, int width, int height) {
