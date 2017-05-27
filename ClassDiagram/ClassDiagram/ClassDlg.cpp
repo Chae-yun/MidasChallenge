@@ -19,6 +19,7 @@ CClassDlg::CClassDlg(CWnd* pParent /*=NULL*/)
 	, m_op_return(_T(""))
 	, m_op_name(_T(""))
 	, m_op_param(_T(""))
+	, m_class_name(_T(""))
 {
 
 }
@@ -42,6 +43,8 @@ void CClassDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_OP_PARAM, m_op_param);
 	DDV_MaxChars(pDX, m_op_param, 40);
 	DDX_Control(pDX, IDC_LIST_OP, m_list_op);
+	DDX_Text(pDX, IDC_CLASS_NAME, m_class_name);
+	DDV_MaxChars(pDX, m_class_name, 30);
 }
 
 
@@ -50,6 +53,7 @@ BEGIN_MESSAGE_MAP(CClassDlg, CDialog)
 	ON_BN_CLICKED(IDC_AT_DEL, &CClassDlg::OnBnClickedAtDel)
 	ON_BN_CLICKED(IDC_OP_ADD, &CClassDlg::OnBnClickedOpAdd)
 	ON_BN_CLICKED(IDC_OP_DEL, &CClassDlg::OnBnClickedOpDel)
+	ON_BN_CLICKED(IDOK, &CClassDlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 
@@ -97,6 +101,25 @@ void CClassDlg::OnBnClickedOpDel()
 	m_list_op.DeleteString(nList);
 }
 
-void CClassDlg::SetStringAt(CString &s) {
-	m_list_at.AddString("hhgjgj");
+
+void CClassDlg::OnBnClickedOk()
+{
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	int at_len = m_list_at.GetCount();
+	int op_len = m_list_op.GetCount();
+	CString temp;
+
+	at = "";
+	op = "";
+
+	class_name = m_class_name;
+	for (int i = 0; i < at_len; i++) {
+		m_list_at.GetText(i, temp);
+		at += temp;
+	}
+	for (int i = 0; i < op_len; i++) {
+		m_list_op.GetText(i, temp);
+		at += temp;
+	}
+	CDialog::OnOK();
 }

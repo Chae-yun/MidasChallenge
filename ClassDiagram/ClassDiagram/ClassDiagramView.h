@@ -74,8 +74,6 @@ public:
 	POSITION m_Prev_ps;
 	CClassDlg m_class_dlg;
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
-	CString at="¾È³ç";
-	CString op;
 	WCHAR* pWideChar;
 	WCHAR * ConvertMultibyteToUnicode(char * pMultibyte);
 	CList<Diagram*> m_list_backup;
