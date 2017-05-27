@@ -53,10 +53,11 @@ public:
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	CPoint m_ptPrev; // Lbutton를 처음 눌렀을때 좌표 기억
+	void AddDiagramList();
+	int m_draw_mode;
 };
 
 #ifndef _DEBUG  // ClassDiagramView.cpp의 디버그 버전
 inline CClassDiagramDoc* CClassDiagramView::GetDocument() const
    { return reinterpret_cast<CClassDiagramDoc*>(m_pDocument); }
 #endif
-

@@ -208,7 +208,6 @@
     <ClCompile Include="DDependline.cpp" />
     <ClCompile Include="DExtendline.cpp" />
     <ClCompile Include="Diagram.cpp" />
-    <ClCompile Include="DMakeclass.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

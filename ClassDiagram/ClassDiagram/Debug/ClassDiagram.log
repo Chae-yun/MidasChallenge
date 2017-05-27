@@ -1,13 +1,6 @@
-﻿  stdafx.cpp
-  MainFrm.cpp
-  DMakeclass.cpp
-  Diagram.cpp
-  DExtendline.cpp
-  DDependline.cpp
-  ClassDiagramView.cpp
-  ClassDiagramDoc.cpp
+﻿cl : 명령줄 warning D9028: 최소 다시 빌드에 실패했습니다. 정상 빌드로 되돌립니다.
   ClassDiagram.cpp
-  ChildFrm.cpp
+  ClassDiagramView.cpp
   코드를 생성하고 있습니다...
   ClassDiagram.vcxproj -> C:\Users\user\Documents\GitHub\MidasChallenge\ClassDiagram\Debug\ClassDiagram.exe
   ClassDiagram.vcxproj -> C:\Users\user\Documents\GitHub\MidasChallenge\ClassDiagram\Debug\ClassDiagram.pdb (Partial PDB)

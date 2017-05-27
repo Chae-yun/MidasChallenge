@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include <gdiplusgraphics.h>
 #include "define.h"
+#include "define.h"
 // Diagram
 
 class Diagram : public CWnd
