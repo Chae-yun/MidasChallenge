@@ -80,9 +80,6 @@
     <ClCompile Include="Diagram.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="DMakeclass.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="DExtendline.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>

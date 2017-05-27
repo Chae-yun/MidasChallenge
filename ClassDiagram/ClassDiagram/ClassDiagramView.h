@@ -8,6 +8,7 @@
 #include "DDependline.h"
 #include "DExtendline.h"
 #include "DMakeclass.h"
+#include "atltypes.h"
 
 class CClassDiagramView : public CView
 {
@@ -49,6 +50,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	CList<Diagram *> m_list;
+<<<<<<< HEAD
 	afx_msg void OnUndo();
 	afx_msg void OnRedo();
 	afx_msg void OnBitmap();
@@ -58,10 +60,16 @@ public:
 	afx_msg void OnExtend();
 	afx_msg void OnDepend();
 	afx_msg void OnDelete();
+=======
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	CPoint m_ptPrev; // Lbutton를 처음 눌렀을때 좌표 기억
+	void AddDiagramList();
+	int m_draw_mode;
+>>>>>>> e5492d55d27b180b3f47cb861903bb4514e5a4ac
 };
 
 #ifndef _DEBUG  // ClassDiagramView.cpp의 디버그 버전
 inline CClassDiagramDoc* CClassDiagramView::GetDocument() const
    { return reinterpret_cast<CClassDiagramDoc*>(m_pDocument); }
 #endif
-

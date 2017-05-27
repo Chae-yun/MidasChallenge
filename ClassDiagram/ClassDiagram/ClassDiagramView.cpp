@@ -28,6 +28,7 @@ BEGIN_MESSAGE_MAP(CClassDiagramView, CView)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CClassDiagramView::OnFilePrintPreview)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
+<<<<<<< HEAD
 	ON_COMMAND(ID_UNDO, &CClassDiagramView::OnUndo)
 	ON_COMMAND(ID_REDO, &CClassDiagramView::OnRedo)
 	ON_COMMAND(ID_BITMAP, &CClassDiagramView::OnBitmap)
@@ -37,11 +38,17 @@ BEGIN_MESSAGE_MAP(CClassDiagramView, CView)
 	ON_COMMAND(ID_EXTEND, &CClassDiagramView::OnExtend)
 	ON_COMMAND(ID_DEPEND, &CClassDiagramView::OnDepend)
 	ON_COMMAND(ID_DELETE, &CClassDiagramView::OnDelete)
+=======
+	ON_WM_MOUSEMOVE()
+	ON_WM_LBUTTONDOWN()
+>>>>>>> e5492d55d27b180b3f47cb861903bb4514e5a4ac
 END_MESSAGE_MAP()
 
 // CClassDiagramView 생성/소멸
 
 CClassDiagramView::CClassDiagramView()
+	: m_ptPrev(0)
+	, m_draw_mode(0)
 {
 	// TODO: 여기에 생성 코드를 추가합니다.
 
@@ -68,6 +75,43 @@ void CClassDiagramView::OnDraw(CDC* pDC)
 	if (!pDoc)
 		return;
 
+
+	CDC MemDC;
+	CBitmap* pOldBitmap;
+	CBitmap bmp;
+
+	CRect rect;
+	GetClientRect(&rect);
+
+	MemDC.CreateCompatibleDC(pDC);
+	bmp.CreateCompatibleBitmap(pDC, rect.Width(), rect.Height());
+	pOldBitmap = (CBitmap *)MemDC.SelectObject(&bmp);
+	MemDC.PatBlt(0, 0, rect.Width(), rect.Height(), WHITENESS);
+
+	POSITION ps = m_list.GetHeadPosition();
+	while (ps) {
+		Diagram *diagram;
+		diagram = m_list.GetAt(ps);
+		if (diagram->m_draw_mode == CLASS_MODE) {
+			DMakeclass *makeclass = (DMakeclass *)diagram;
+			makeclass->Draw(&MemDC);
+		}
+		/*if (diagram->m_draw_mode == DEPEND_MODE) {
+			DDependline *dependline = (DDependline *)diagram;
+			DDependline->Draw(&MemDC);
+		}
+		if (diagram->m_draw_mode == EXTEND_MODE) {
+			DExtendline *extendline = (DExtendline *)diagram;
+			extendline->Draw(&MemDC);
+		}*/
+		
+		m_list.GetNext(ps);
+	}
+
+	pDC->BitBlt(0, 0, rect.Width(), rect.Height(), &MemDC, 0, 0, SRCCOPY); //memdc를 dc에 한번에 넣어서 더블버퍼링 기법 구현
+
+	MemDC.SelectObject(pOldBitmap);
+	MemDC.DeleteDC();
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
 }
 
@@ -136,6 +180,7 @@ CClassDiagramDoc* CClassDiagramView::GetDocument() const // 디버그되지 않은 버전
 // CClassDiagramView 메시지 처리기
 
 
+<<<<<<< HEAD
 void CClassDiagramView::OnUndo()
 {
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.
@@ -188,4 +233,42 @@ void CClassDiagramView::OnDepend()
 void CClassDiagramView::OnDelete()
 {
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+=======
+void CClassDiagramView::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	if (m_draw_mode == CLASS_MODE && nFlags == MK_LBUTTON) { //원그릴때
+		DMakeclass *makeclass = new DMakeclass();
+		makeclass->SetRect(m_ptPrev.x, m_ptPrev.y, point.x - m_ptPrev.x, point.y - m_ptPrev.y);
+
+		POSITION Index;
+		Index = m_list.GetTailPosition();
+		m_list.SetAt(Index, (Diagram *)makeclass);
+
+		Invalidate(FALSE);
+	}
+	CView::OnMouseMove(nFlags, point);
+}
+
+
+void CClassDiagramView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	m_ptPrev = point;
+	AddDiagramList();
+	CView::OnLButtonDown(nFlags, point);
+}
+
+
+void CClassDiagramView::AddDiagramList()
+{
+	if (m_draw_mode == CLASS_MODE) {
+		DMakeclass *makeclass = new DMakeclass();
+		m_list.AddTail((Diagram *)makeclass);
+	}
+	/*else if (m_draw_mode == EXTEND_MODE) {
+		DExtendline *extendline = new DExtendline();
+		m_list.AddTail((Diagram *)extendline);
+	}*/
+>>>>>>> e5492d55d27b180b3f47cb861903bb4514e5a4ac
 }

@@ -1,3 +1,12 @@
+<<<<<<< HEAD
 ﻿  MainFrm.cpp
   ClassDiagram.vcxproj -> D:\notebook\midas_challenge\MidasChallenge\ClassDiagram\Debug\ClassDiagram.exe
   ClassDiagram.vcxproj -> D:\notebook\midas_challenge\MidasChallenge\ClassDiagram\Debug\ClassDiagram.pdb (Partial PDB)
+=======
+﻿cl : 명령줄 warning D9028: 최소 다시 빌드에 실패했습니다. 정상 빌드로 되돌립니다.
+  ClassDiagram.cpp
+  ClassDiagramView.cpp
+  코드를 생성하고 있습니다...
+  ClassDiagram.vcxproj -> C:\Users\user\Documents\GitHub\MidasChallenge\ClassDiagram\Debug\ClassDiagram.exe
+  ClassDiagram.vcxproj -> C:\Users\user\Documents\GitHub\MidasChallenge\ClassDiagram\Debug\ClassDiagram.pdb (Partial PDB)
+>>>>>>> e5492d55d27b180b3f47cb861903bb4514e5a4ac
