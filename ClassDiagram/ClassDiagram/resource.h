@@ -66,13 +66,25 @@
 #define ID_UNDO                         32791
 #define ID_REDO                         32793
 #define ID_MOVE                         32798
+#define ID_Menu                         32799
+#define ID_32800                        32800
+#define ID_32801                        32801
+#define ID_32802                        32802
+#define ID_32803                        32803
+#define id_class                        32804
+#define ID_CLASS                        32804
+#define ID_32805                        32805
+#define ID_32806                        32806
+#define ID_32807                        32807
+#define ID_dele                         32808
+#define ID_ACCELERATOR32814             32814
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        312
-#define _APS_NEXT_COMMAND_VALUE         32799
+#define _APS_NEXT_COMMAND_VALUE         32816
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
