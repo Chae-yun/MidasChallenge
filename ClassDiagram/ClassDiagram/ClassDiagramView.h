@@ -13,6 +13,7 @@
 #include "ClassDiagramView.h"
 #include "ClassDiagramDoc.h"
 #include "ClassDlg.h"
+#include "afxtempl.h"
 
 class CClassDiagramView : public CView
 {
@@ -77,6 +78,7 @@ public:
 	CString op;
 	WCHAR* pWideChar;
 	WCHAR * ConvertMultibyteToUnicode(char * pMultibyte);
+	CList<Diagram*> m_list_backup;
 };
 
 #ifndef _DEBUG  // ClassDiagramView.cpp의 디버그 버전
