@@ -194,6 +194,7 @@
     <ClInclude Include="define.h" />
     <ClInclude Include="DExtendline.h" />
     <ClInclude Include="Diagram.h" />
+    <ClInclude Include="DImage.h" />
     <ClInclude Include="DMakeclass.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Resource.h" />

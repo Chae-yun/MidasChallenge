@@ -48,6 +48,7 @@ CClassDiagramView::CClassDiagramView()
 	: m_ptPrev(0)
 	, m_draw_mode(-1)
 	, m_selectcnt(0)
+	, pWideChar(NULL)
 {
 	// TODO: 여기에 생성 코드를 추가합니다.
 
@@ -101,6 +102,10 @@ void CClassDiagramView::OnDraw(CDC* pDC)
 		if (diagram->m_diagram_mode == DEPEND_MODE) {
 			DDependline *dependline = (DDependline *)diagram;
 			dependline->Draw(&MemDC);
+		}
+		if (diagram->m_diagram_mode == IMAGE_MODE) {
+			DImage *image = (DImage *)diagram;
+			image->Draw(&MemDC);
 		}
 		m_list.GetNext(ps);
 	}
@@ -190,8 +195,18 @@ void CClassDiagramView::OnRedo()
 void CClassDiagramView::OnBitmap()
 {
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	char szFilter[] = "Image (*.BMP, *.GIF, *.JPG) | *.BMP;*.GIF;*.JPG | All Files(*.*)|*.*||";
+	CFileDialog dlg(TRUE, NULL, NULL, OFN_HIDEREADONLY, szFilter);
+	if (IDOK == dlg.DoModal())
+	{
+		CString strPathName = dlg.GetPathName();
+		WCHAR *FilePath = ConvertMultibyteToUnicode((LPSTR)(LPCSTR)strPathName);
+		DImage *image = new DImage();
+		image->SetFilePath(pWideChar);
+		m_list.AddTail((Diagram *)image);
+	}
+	Invalidate(FALSE);
 }
-
 
 void CClassDiagramView::OnClass()
 {
@@ -338,4 +353,20 @@ void CClassDiagramView::AddDiagramList(CPoint point)
 void CClassDiagramView::OnMove()
 {
 	m_draw_mode = NONE;
+}
+
+
+WCHAR * CClassDiagramView::ConvertMultibyteToUnicode(char * pMultibyte)
+{
+	int nLen = strlen(pMultibyte);
+
+	pWideChar = new WCHAR[nLen];
+	memset(pWideChar, 0x00, (nLen) * sizeof(WCHAR));
+
+	MultiByteToWideChar(CP_ACP, 0, (LPCSTR)pMultibyte, -1, pWideChar, nLen);
+
+	CString strUnicode;
+	strUnicode.Format("%s", pWideChar);
+
+	return pWideChar;
 }

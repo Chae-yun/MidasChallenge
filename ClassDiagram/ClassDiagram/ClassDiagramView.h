@@ -8,6 +8,7 @@
 #include "DDependline.h"
 #include "DExtendline.h"
 #include "DMakeclass.h"
+#include "DImage.h"
 #include "atltypes.h"
 
 class CClassDiagramView : public CView
@@ -67,6 +68,8 @@ public:
 	afx_msg void OnMove();
 	int m_selectcnt;
 	POSITION m_Prev_ps;
+	WCHAR* pWideChar;
+	WCHAR * ConvertMultibyteToUnicode(char * pMultibyte);
 };
 
 #ifndef _DEBUG  // ClassDiagramView.cpp의 디버그 버전
