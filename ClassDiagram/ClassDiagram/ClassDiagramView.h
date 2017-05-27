@@ -9,6 +9,7 @@
 #include "DExtendline.h"
 #include "DMakeclass.h"
 #include "atltypes.h"
+#include "ClassDlg.h"
 
 class CClassDiagramView : public CView
 {
@@ -64,6 +65,9 @@ public:
 	CPoint m_ptPrev; // Lbutton를 처음 눌렀을때 좌표 기억
 	void AddDiagramList();
 	int m_draw_mode;
+
+private:
+	CClassDlg class_dlg;
 };
 
 #ifndef _DEBUG  // ClassDiagramView.cpp의 디버그 버전

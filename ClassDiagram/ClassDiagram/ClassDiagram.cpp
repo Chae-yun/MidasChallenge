@@ -57,7 +57,7 @@ BOOL CClassDiagramApp::InitInstance()
 
 	GdiplusStartupInput gdiplusStartupInput;
 	if (::GdiplusStartup(&gdiplusToKen, &gdiplusStartupInput, NULL) != Ok) {
-		AfxMessageBox("GDI+ 라이브러리의 초기화에 실패했습니다.");
+		AfxMessageBox(_T("GDI+ 라이브러리의 초기화에 실패했습니다."));
 		return false;
 	}
 

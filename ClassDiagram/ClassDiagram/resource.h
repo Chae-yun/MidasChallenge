@@ -43,6 +43,19 @@
 #define IDI_ICON11                      326
 #define IDI_ICON12                      327
 #define IDI_ICON13                      328
+#define IDD_CLASS_SETTING               329
+#define IDC_CLASS_NAME                  1000
+#define IDC_LIST_AT                     1001
+#define IDC_AT_TYPE                     1003
+#define IDC_AT_NAME                     1004
+#define IDC_LIST_OP                     1005
+#define IDC_AT_ADD                      1006
+#define IDC_AT_DEL                      1007
+#define IDC_OP_NAME                     1008
+#define IDC_OP_PARAM                    1009
+#define IDC_OP_ADD                      1010
+#define IDC_OP_DEL                      1011
+#define IDC_OP_RETURN                   1012
 #define ID_CLASS                        32774
 #define ID_ATTRIBUTE                    32778
 #define ID_OPERATION                    32783
@@ -57,9 +70,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        329
+#define _APS_NEXT_RESOURCE_VALUE        331
 #define _APS_NEXT_COMMAND_VALUE         32795
-#define _APS_NEXT_CONTROL_VALUE         1000
+#define _APS_NEXT_CONTROL_VALUE         1008
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif
