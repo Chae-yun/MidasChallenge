@@ -28,7 +28,6 @@ BEGIN_MESSAGE_MAP(CClassDiagramView, CView)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CClassDiagramView::OnFilePrintPreview)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
-<<<<<<< HEAD
 	ON_COMMAND(ID_UNDO, &CClassDiagramView::OnUndo)
 	ON_COMMAND(ID_REDO, &CClassDiagramView::OnRedo)
 	ON_COMMAND(ID_BITMAP, &CClassDiagramView::OnBitmap)
@@ -38,10 +37,8 @@ BEGIN_MESSAGE_MAP(CClassDiagramView, CView)
 	ON_COMMAND(ID_EXTEND, &CClassDiagramView::OnExtend)
 	ON_COMMAND(ID_DEPEND, &CClassDiagramView::OnDepend)
 	ON_COMMAND(ID_DELETE, &CClassDiagramView::OnDelete)
-=======
 	ON_WM_MOUSEMOVE()
 	ON_WM_LBUTTONDOWN()
->>>>>>> e5492d55d27b180b3f47cb861903bb4514e5a4ac
 END_MESSAGE_MAP()
 
 // CClassDiagramView 생성/소멸
@@ -178,9 +175,6 @@ CClassDiagramDoc* CClassDiagramView::GetDocument() const // 디버그되지 않은 버전
 
 
 // CClassDiagramView 메시지 처리기
-
-
-<<<<<<< HEAD
 void CClassDiagramView::OnUndo()
 {
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.
@@ -233,7 +227,8 @@ void CClassDiagramView::OnDepend()
 void CClassDiagramView::OnDelete()
 {
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.
-=======
+}
+
 void CClassDiagramView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
@@ -270,5 +265,4 @@ void CClassDiagramView::AddDiagramList()
 		DExtendline *extendline = new DExtendline();
 		m_list.AddTail((Diagram *)extendline);
 	}*/
->>>>>>> e5492d55d27b180b3f47cb861903bb4514e5a4ac
 }
