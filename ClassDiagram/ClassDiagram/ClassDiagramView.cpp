@@ -276,10 +276,9 @@ void CClassDiagramView::AddDiagramList(CPoint point)
 							DExtendline *extendline = new DExtendline;
 							extendline->SetPoint( 
 								class2->m_rect.X + (class2->m_rect.Width / 2),
-								class2->m_rect.Y,
+								class2->m_rect.Y, //첫번째 선택 클래스
 								class1->m_rect.X + (class1->m_rect.Width / 2),
-								class1->m_rect.Y + class1->m_rect.Height);
-							//TRACE("s%d %d e%d %d\n", class1->m_rect.X, class1->m_rect.Y, class2->m_rect.X, class2->m_rect.Y);
+								class1->m_rect.Y + class1->m_rect.Height);//두번째 선택 클래스
 							m_list.AddTail((Diagram *)extendline);
 							Invalidate(FALSE);
 							m_selectcnt = 0;
@@ -296,18 +295,6 @@ void CClassDiagramView::AddDiagramList(CPoint point)
 			m_list.GetPrev(ps);
 		}
 	}
-	/*while (ps) {
-		shape = m_list.GetAt(ps);
-		shape->Setclick(false);
-		m_list.GetNext(ps);
-	}
-	ps = m_list.GetTailPosition();
-
-	while (ps) {
-		if (SetORRelease(point, ps))
-			break;
-		m_list.GetPrev(ps);
-	}*/
 }
 
 void CClassDiagramView::OnMove()
