@@ -1,10 +1,13 @@
 #pragma once
 #include "Diagram.h"
-class DDependline :
-	public Diagram
+
+class DDependline : public Diagram
 {
 public:
-	DDependline() {};
+	DDependline() {
+		m_diagram_mode = DEPEND_MODE;
+	};
+
 	Point m_startPoint;
 	Point m_endPoint;
 	void Draw(CDC *MemDC) { //MemDC에 그리는 함수
@@ -26,6 +29,7 @@ public:
 		if (m_startPoint.X > m_endPoint.X)
 			Swap(&m_startPoint, &m_endPoint);
 	}
+
 	~DDependline() {};
 };
 

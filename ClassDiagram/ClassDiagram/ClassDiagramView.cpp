@@ -12,6 +12,8 @@
 #include "ClassDiagramDoc.h"
 #include "ClassDiagramView.h"
 
+#include "ClassDlg.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -40,6 +42,9 @@ BEGIN_MESSAGE_MAP(CClassDiagramView, CView)
 	ON_WM_MOUSEMOVE()
 	ON_WM_LBUTTONDOWN()
 	ON_COMMAND(ID_MOVE, &CClassDiagramView::OnMove)
+//	ON_WM_MBUTTONDBLCLK()
+ON_WM_LBUTTONDBLCLK()
+ON_WM_PAINT()
 END_MESSAGE_MAP()
 
 // CClassDiagramView 생성/소멸
@@ -48,6 +53,7 @@ CClassDiagramView::CClassDiagramView()
 	: m_ptPrev(0)
 	, m_draw_mode(-1)
 	, m_selectcnt(0)
+	, pWideChar(NULL)
 {
 	// TODO: 여기에 생성 코드를 추가합니다.
 
@@ -101,6 +107,10 @@ void CClassDiagramView::OnDraw(CDC* pDC)
 		if (diagram->m_diagram_mode == DEPEND_MODE) {
 			DDependline *dependline = (DDependline *)diagram;
 			dependline->Draw(&MemDC);
+		}
+		if (diagram->m_diagram_mode == IMAGE_MODE) {
+			DImage *image = (DImage *)diagram;
+			image->Draw(&MemDC);
 		}
 		m_list.GetNext(ps);
 	}
@@ -176,22 +186,39 @@ CClassDiagramDoc* CClassDiagramView::GetDocument() const // 디버그되지 않은 버전
 // CClassDiagramView 메시지 처리기
 void CClassDiagramView::OnUndo()
 {
-	// TODO: 여기에 명령 처리기 코드를 추가합니다.
-
+	if (m_list.GetCount() > 0) {
+		m_list_backup.AddTail(m_list.GetTail());
+		m_list.RemoveTail();
+		Invalidate(FALSE);
+	}
 }
 
 
 void CClassDiagramView::OnRedo()
 {
-	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	if (m_list_backup.GetCount() > 0) {
+		m_list.AddTail(m_list_backup.GetTail());
+		m_list_backup.RemoveTail();
+		Invalidate(FALSE);
+	}
 }
 
 
 void CClassDiagramView::OnBitmap()
 {
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	char szFilter[] = "Image (*.BMP, *.GIF, *.JPG) | *.BMP;*.GIF;*.JPG | All Files(*.*)|*.*||";
+	CFileDialog dlg(TRUE, NULL, NULL, OFN_HIDEREADONLY, szFilter);
+	if (IDOK == dlg.DoModal())
+	{
+		CString strPathName = dlg.GetPathName();
+		WCHAR *FilePath = ConvertMultibyteToUnicode((LPSTR)(LPCSTR)strPathName);
+		DImage *image = new DImage();
+		image->SetFilePath(pWideChar);
+		m_list.AddTail((Diagram *)image);
+	}
+	Invalidate(FALSE);
 }
-
 
 void CClassDiagramView::OnClass()
 {
@@ -214,12 +241,14 @@ void CClassDiagramView::OnOperation()
 void CClassDiagramView::OnExtend()
 {
 	m_draw_mode = EXTEND_MODE;
+	m_selectcnt = 0;
 }
 
 
 void CClassDiagramView::OnDepend()
 {
 	m_draw_mode = DEPEND_MODE;
+	m_selectcnt = 0;
 }
 
 
@@ -295,9 +324,84 @@ void CClassDiagramView::AddDiagramList(CPoint point)
 			m_list.GetPrev(ps);
 		}
 	}
+	if (m_draw_mode == DEPEND_MODE) {
+		POSITION ps = m_list.GetTailPosition();
+		Diagram *diagram;
+		while (ps) {
+			diagram = m_list.GetAt(ps);
+			if (diagram->m_diagram_mode == CLASS_MODE) {
+				DMakeclass *class1 = (DMakeclass*)diagram;
+				if (class1->m_rect.Contains(point.x, point.y)) {
+					if (ps != m_Prev_ps) {
+						m_selectcnt++;
+						if (m_selectcnt == 2) {
+							diagram = m_list.GetAt(m_Prev_ps);
+							DMakeclass *class2 = (DMakeclass *)diagram;
+							DDependline *dependline = new DDependline;
+							dependline->SetPoint(
+								class2->m_rect.X + (class2->m_rect.Width / 2),
+								class2->m_rect.Y, //첫번째 선택 클래스
+								class1->m_rect.X + (class1->m_rect.Width / 2),
+								class1->m_rect.Y + class1->m_rect.Height);//두번째 선택 클래스
+
+							m_list.AddTail((Diagram *)dependline);
+							Invalidate(FALSE);
+							m_selectcnt = 0;
+							m_Prev_ps = NULL;
+							break;
+						}
+						else {
+							m_Prev_ps = ps;
+							break;
+						}
+					}
+				}
+			}
+			m_list.GetPrev(ps);
+		}
+	}
 }
 
 void CClassDiagramView::OnMove()
 {
 	m_draw_mode = NONE;
+}
+
+void CClassDiagramView::OnLButtonDblClk(UINT nFlags, CPoint point)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	m_ptPrev = point;
+
+	if (m_draw_mode == NONE) {
+		POSITION ps = m_list.GetTailPosition();
+		Diagram *diagram;
+		while (ps) {
+			diagram = m_list.GetAt(ps);
+			if (diagram->m_diagram_mode == CLASS_MODE) {
+				DMakeclass *class1 = (DMakeclass*)diagram;
+				if (class1->m_rect.Contains(point.x, point.y)) {
+					//m_class_dlg.SetStringAt(at);
+					m_class_dlg.DoModal();
+				}
+			}
+			m_list.GetPrev(ps);
+		}
+	}
+
+	CView::OnLButtonDblClk(nFlags, point);
+}
+
+WCHAR * CClassDiagramView::ConvertMultibyteToUnicode(char * pMultibyte)
+{
+	int nLen = strlen(pMultibyte);
+
+	pWideChar = new WCHAR[nLen];
+	memset(pWideChar, 0x00, (nLen) * sizeof(WCHAR));
+
+	MultiByteToWideChar(CP_ACP, 0, (LPCSTR)pMultibyte, -1, pWideChar, nLen);
+
+	CString strUnicode;
+	strUnicode.Format("%s", pWideChar);
+
+	return pWideChar;
 }

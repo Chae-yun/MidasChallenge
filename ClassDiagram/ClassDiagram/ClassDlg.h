@@ -1,5 +1,4 @@
 #pragma once
-#include "afxwin.h"
 
 
 // CClassDlg 대화 상자입니다.
@@ -16,7 +15,6 @@ public:
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_CLASS_SETTING };
 #endif
-
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
 
@@ -26,6 +24,7 @@ public:
 	CString m_at_type;
 	CString m_at_name;
 	CListBox m_list_at;
+	CList <CString> m_list;
 	afx_msg void OnBnClickedAtDel();
 	CString m_op_return;
 	CString m_op_name;
@@ -33,4 +32,7 @@ public:
 	CListBox m_list_op;
 	afx_msg void OnBnClickedOpAdd();
 	afx_msg void OnBnClickedOpDel();
+	afx_msg void SetStringAt(CString &s);
+	afx_msg void SetStringOp(CString &s);
+	CString s;
 };

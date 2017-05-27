@@ -72,9 +72,35 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
+IDI_ICON02              ICON                    "res\\02.ico"
+
 IDR_MAINFRAME           ICON                    "res\\ClassDiagram.ico"
 
 IDR_ClassDiagramTYPE    ICON                    "res\\ClassDiagramDoc.ico"
+
+IDI_ICON01              ICON                    "res\\01.ico"
+
+IDI_ICON03              ICON                    "res\\03.ico"
+
+IDI_ICON04              ICON                    "res\\04.ico"
+
+IDI_ICON05              ICON                    "res\\05.ico"
+
+IDI_ICON06              ICON                    "res\\06.ico"
+
+IDI_ICON07              ICON                    "res\\07.ico"
+
+IDI_ICON08              ICON                    "res\\08.ico"
+
+IDI_ICON09              ICON                    "res\\09.ico"
+
+IDI_ICON10              ICON                    "res\\10.ico"
+
+IDI_ICON11              ICON                    "res\\11.ico"
+
+IDI_ICON12              ICON                    "res\\12.ico"
+
+IDI_ICON13              ICON                    "res\\13.ico"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -294,14 +320,68 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOGEX 0, 0, 238, 163
+IDD_ABOUTBOX DIALOGEX 0, 0, 232, 161
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "ClassDiagram 정보"
+CAPTION "도움말"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "ClassDiagram, 버전 1.0",IDC_STATIC,16,14,114,8,SS_NOPREFIX
-    DEFPUSHBUTTON   "확인",IDOK,181,142,50,14,WS_GROUP
-    CONTROL         "",IDC_STATIC,"Static",SS_BITMAP,16,29,11,9
+    DEFPUSHBUTTON   "확인",IDOK,175,140,50,14,WS_GROUP
+    ICON            IDI_ICON01,IDC_STATIC,16,15,16,14
+    ICON            IDI_ICON02,IDC_STATIC,16,34,16,14
+    ICON            IDI_ICON03,IDC_STATIC,16,53,16,14
+    ICON            IDI_ICON05,IDC_STATIC,16,72,16,14
+    ICON            IDI_ICON04,IDC_STATIC,16,92,16,14
+    ICON            IDI_ICON06,IDC_STATIC,16,111,16,14
+    ICON            IDI_ICON13,IDC_STATIC,16,130,16,14
+    ICON            IDI_ICON08,IDC_STATIC,128,34,16,14
+    ICON            IDI_ICON09,IDC_STATIC,128,53,16,14
+    ICON            IDI_ICON10,IDC_STATIC,128,72,16,14
+    ICON            IDI_ICON11,IDC_STATIC,128,91,16,14
+    ICON            IDI_ICON12,IDC_STATIC,128,111,16,14
+    ICON            IDI_ICON07,IDC_STATIC,128,15,16,14
+    LTEXT           "전으로 되돌리는 기능",IDC_STATIC,38,18,65,8
+    LTEXT           "앞으로 가는 기능",IDC_STATIC,38,38,52,8
+    LTEXT           "새문서를 여는 기능",IDC_STATIC,38,57,58,8
+    LTEXT           "저장하는 기능",IDC_STATIC,38,76,73,8
+    LTEXT           "문서를 불러오는 기능",IDC_STATIC,38,95,70,8
+    LTEXT           "비트맵으로 저장하는 기능",IDC_STATIC,38,114,88,8
+    LTEXT           "도움말을 보는 기능",IDC_STATIC,38,133,88,8
+    LTEXT           "클래스를 그리는 기능",IDC_STATIC,150,18,65,8
+    LTEXT           "속성 추가 기능",IDC_STATIC,150,38,45,8
+    LTEXT           "오펴레이션 추가 기능",IDC_STATIC,150,57,65,8
+    LTEXT           "상속 선 그리는 기능",IDC_STATIC,150,76,61,8
+    LTEXT           "의존 선 그리는 기능",IDC_STATIC,150,94,61,8
+    LTEXT           "지우는 기능",IDC_STATIC,150,114,36,8
+END
+
+IDD_CLASS_SETTING DIALOGEX 0, 0, 388, 216
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "확인",IDOK,274,195,50,14
+    PUSHBUTTON      "취소",IDCANCEL,331,195,50,14
+    EDITTEXT        IDC_CLASS_NAME,77,19,104,14,ES_AUTOHSCROLL
+    LTEXT           "클래스명",IDC_STATIC,26,22,26,8
+    LISTBOX         IDC_LIST_AT,24,110,158,72,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_AT_TYPE,77,56,104,14,ES_AUTOHSCROLL
+    GROUPBOX        "멤버변수",IDC_STATIC,18,40,170,148
+    LTEXT           "변수타입",IDC_STATIC,26,59,26,8
+    EDITTEXT        IDC_AT_NAME,77,74,104,14,ES_AUTOHSCROLL
+    LTEXT           "변수명",IDC_STATIC,26,77,20,8
+    PUSHBUTTON      "추가",IDC_AT_ADD,24,93,79,14
+    PUSHBUTTON      "삭제",IDC_AT_DEL,105,93,77,14
+    LISTBOX         IDC_LIST_OP,207,109,155,72,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_OP_NAME,258,55,103,14,ES_AUTOHSCROLL
+    GROUPBOX        "멤버함수",IDC_STATIC,200,17,170,170
+    LTEXT           "함수명",IDC_STATIC,208,58,20,8
+    EDITTEXT        IDC_OP_PARAM,258,73,103,14,ES_AUTOHSCROLL
+    LTEXT           "매개변수",IDC_STATIC,208,72,26,8
+    PUSHBUTTON      "추가",IDC_OP_ADD,206,92,79,14
+    PUSHBUTTON      "삭제",IDC_OP_DEL,288,92,74,14
+    EDITTEXT        IDC_OP_RETURN,258,37,103,14,ES_AUTOHSCROLL
+    LTEXT           "리턴타입",IDC_STATIC,208,40,26,8
+    LTEXT           "ex) int a, int b",IDC_STATIC,208,79,47,8
 END
 
 
@@ -355,9 +435,17 @@ BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 231
+        RIGHTMARGIN, 225
         TOPMARGIN, 7
-        BOTTOMMARGIN, 156
+        BOTTOMMARGIN, 154
+    END
+
+    IDD_CLASS_SETTING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 381
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 209
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -369,6 +457,38 @@ END
 //
 
 IDD_ABOUTBOX AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 100,
+    0, 0, 0, 0,
+    0, 0, 100, 100,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0
+END
+
+IDD_CLASS_SETTING AFX_DIALOG_LAYOUT
 BEGIN
     0
 END

@@ -8,7 +8,12 @@
 #include "DDependline.h"
 #include "DExtendline.h"
 #include "DMakeclass.h"
+#include "DImage.h"
 #include "atltypes.h"
+#include "ClassDiagramView.h"
+#include "ClassDiagramDoc.h"
+#include "ClassDlg.h"
+#include "afxtempl.h"
 
 class CClassDiagramView : public CView
 {
@@ -67,6 +72,13 @@ public:
 	afx_msg void OnMove();
 	int m_selectcnt;
 	POSITION m_Prev_ps;
+	CClassDlg m_class_dlg;
+	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
+	CString at="안녕";
+	CString op;
+	WCHAR* pWideChar;
+	WCHAR * ConvertMultibyteToUnicode(char * pMultibyte);
+	CList<Diagram*> m_list_backup;
 };
 
 #ifndef _DEBUG  // ClassDiagramView.cpp의 디버그 버전
