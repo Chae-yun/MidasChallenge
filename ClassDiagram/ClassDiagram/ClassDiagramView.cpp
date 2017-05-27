@@ -62,6 +62,42 @@ void CClassDiagramView::OnDraw(CDC* pDC)
 	if (!pDoc)
 		return;
 
+
+	CDC MemDC;
+	CBitmap* pOldBitmap;
+	CBitmap bmp;
+
+	CRect rect;
+	GetClientRect(&rect);
+
+	MemDC.CreateCompatibleDC(pDC);
+	bmp.CreateCompatibleBitmap(pDC, rect.Width(), rect.Height());
+	pOldBitmap = (CBitmap *)MemDC.SelectObject(&bmp);
+	MemDC.PatBlt(0, 0, rect.Width(), rect.Height(), WHITENESS);
+
+	POSITION ps = m_list.GetHeadPosition();
+	while (ps) {
+		Diagram *diagram;
+		diagram = m_list.GetAt(ps);
+		if (diagram->m_draw_mode == DEPEND_MODE) {
+			DDependline *dependline = (DDependline *)diagram;
+			DDependline->Draw(&MemDC);
+		}
+		if (diagram->m_draw_mode == EXTEND_MODE) {
+			DExtendline *extendline = (DExtendline *)diagram;
+			extendline->Draw(&MemDC);
+		}
+		if (diagram->m_draw_mode == CLASS_MODE) {
+			DMakeclass *makeclass = (DMakeclass *)makeclass;
+			makeclass->Draw(&MemDC);
+		}
+		m_list.GetNext(ps);
+	}
+
+	pDC->BitBlt(0, 0, rect.Width(), rect.Height(), &MemDC, 0, 0, SRCCOPY); //memdc를 dc에 한번에 넣어서 더블버퍼링 기법 구현
+
+	MemDC.SelectObject(pOldBitmap);
+	MemDC.DeleteDC();
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
 }
 
@@ -141,6 +177,6 @@ void CClassDiagramView::OnMouseMove(UINT nFlags, CPoint point)
 void CClassDiagramView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
-
+	m_ptPrev = point;
 	CView::OnLButtonDown(nFlags, point);
 }
