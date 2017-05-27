@@ -303,11 +303,61 @@ void CClassDiagramView::AddDiagramList(CPoint point)
 							diagram = m_list.GetAt(m_Prev_ps);
 							DMakeclass *class2 = (DMakeclass *)diagram;
 							DExtendline *extendline = new DExtendline;
-									extendline->SetPoint( 
+							if (class2->m_rect.Y > class1->m_rect.Y) {  // 아래 -> 위
+								if (class2->m_rect.Y < class1->m_rect.Y + class1->m_rect.Height) { //옆인가?
+									if (class2->m_rect.X + class2->m_rect.Width  < class1->m_rect.X) { //오 -> 왼
+										extendline->SetPoint(
+											class1->m_rect.X,
+											class1->m_rect.Y + (class1->m_rect.Height / 2),
+											class2->m_rect.X + (class2->m_rect.Width),
+											class2->m_rect.Y + (class2->m_rect.Height / 2)
+										);
+									}
+									else {  // 왼 -> 오
+										extendline->SetPoint(
+											class1->m_rect.X + (class1->m_rect.Width),
+											class1->m_rect.Y + (class1->m_rect.Height / 2),
+											class2->m_rect.X,
+											class2->m_rect.Y + (class2->m_rect.Height / 2)
+										);
+
+									}
+								}
+								else { //옆이아니면
+									extendline->SetPoint(
 										class2->m_rect.X + (class2->m_rect.Width / 2),
 										class2->m_rect.Y, //첫번째 선택 클래스
 										class1->m_rect.X + (class1->m_rect.Width / 2),
 										class1->m_rect.Y + class1->m_rect.Height);//두번째 선택 클래스
+								}
+							}
+							else { // 위 -> 아래
+								if (class1->m_rect.Y < class2->m_rect.Y + class2->m_rect.Height) { //옆인가?
+									if (class2->m_rect.X > class1->m_rect.X + class1->m_rect.Width) { //오 -> 왼
+										extendline->SetPoint(
+											class1->m_rect.X + (class1->m_rect.Width),
+											class1->m_rect.Y + (class1->m_rect.Height / 2),
+											class2->m_rect.X,
+											class2->m_rect.Y + (class2->m_rect.Height / 2)
+										);
+									}
+									else { //왼 -> 오
+										extendline->SetPoint(
+											class1->m_rect.X,
+											class1->m_rect.Y + (class1->m_rect.Height / 2),
+											class2->m_rect.X + (class2->m_rect.Width),
+											class2->m_rect.Y + (class2->m_rect.Height / 2)
+										);
+									}
+								}
+								else {//옆이아니면
+									extendline->SetPoint(
+										class2->m_rect.X + (class2->m_rect.Width / 2),
+										class2->m_rect.Y + (class2->m_rect.Height), //첫번째 선택 클래스
+										class1->m_rect.X + (class1->m_rect.Width / 2),
+										class1->m_rect.Y);//두번째 선택 클래스
+								}
+							}
 							m_list.AddTail((Diagram *)extendline);
 							Invalidate(FALSE);
 							m_selectcnt = 0;
