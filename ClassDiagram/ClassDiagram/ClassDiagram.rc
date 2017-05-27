@@ -300,7 +300,7 @@ FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "ClassDiagram, 버전 1.0",IDC_STATIC,16,14,114,8,SS_NOPREFIX
     DEFPUSHBUTTON   "확인",IDOK,181,142,50,14,WS_GROUP
-    CONTROL         "",IDC_STATIC,"Static",SS_BITMAP,185,76,20,20
+    CONTROL         "",IDC_STATIC,"Static",SS_BITMAP,16,29,11,9
 END
 
 
