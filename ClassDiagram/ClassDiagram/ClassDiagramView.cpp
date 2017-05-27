@@ -28,11 +28,14 @@ BEGIN_MESSAGE_MAP(CClassDiagramView, CView)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CClassDiagramView::OnFilePrintPreview)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
+	ON_WM_MOUSEMOVE()
+	ON_WM_LBUTTONDOWN()
 END_MESSAGE_MAP()
 
 // CClassDiagramView 생성/소멸
 
 CClassDiagramView::CClassDiagramView()
+	: m_ptPrev(0)
 {
 	// TODO: 여기에 생성 코드를 추가합니다.
 
@@ -125,3 +128,19 @@ CClassDiagramDoc* CClassDiagramView::GetDocument() const // 디버그되지 않은 버전
 
 
 // CClassDiagramView 메시지 처리기
+
+
+void CClassDiagramView::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+
+	CView::OnMouseMove(nFlags, point);
+}
+
+
+void CClassDiagramView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+
+	CView::OnLButtonDown(nFlags, point);
+}

@@ -8,6 +8,7 @@
 #include "DDependline.h"
 #include "DExtendline.h"
 #include "DMakeclass.h"
+#include "atltypes.h"
 
 class CClassDiagramView : public CView
 {
@@ -49,6 +50,9 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	CList<Diagram *> m_list;
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	CPoint m_ptPrev; // Lbutton를 처음 눌렀을때 좌표 기억
 };
 
 #ifndef _DEBUG  // ClassDiagramView.cpp의 디버그 버전
