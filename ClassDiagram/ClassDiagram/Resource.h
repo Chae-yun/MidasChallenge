@@ -33,7 +33,6 @@
 #define ID_CLASS                        32774
 #define ID_ATTRIBUTE                    32778
 #define ID_OPERATION                    32783
-#define ID_BUTTON32784                  32784
 #define ID_DELETE                       32784
 #define ID_BITMAP                       32788
 #define ID_EXTEND                       32789
@@ -45,7 +44,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        311
+#define _APS_NEXT_RESOURCE_VALUE        312
 #define _APS_NEXT_COMMAND_VALUE         32795
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310

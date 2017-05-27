@@ -293,15 +293,14 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
+IDD_ABOUTBOX DIALOGEX 0, 0, 238, 163
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "ClassDiagram 정보"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,21,20
-    LTEXT           "ClassDiagram, 버전 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX
-    LTEXT           "Copyright (C) 2017",IDC_STATIC,42,26,114,8
-    DEFPUSHBUTTON   "확인",IDOK,113,41,50,14,WS_GROUP
+    LTEXT           "ClassDiagram, 버전 1.0",IDC_STATIC,16,14,114,8,SS_NOPREFIX
+    DEFPUSHBUTTON   "확인",IDOK,181,142,50,14,WS_GROUP
+    CONTROL         "",IDC_STATIC,"Static",SS_BITMAP,185,76,20,20
 END
 
 
@@ -355,12 +354,23 @@ BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 163
+        RIGHTMARGIN, 231
         TOPMARGIN, 7
-        BOTTOMMARGIN, 55
+        BOTTOMMARGIN, 156
     END
 END
 #endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_ABOUTBOX AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
 
 
 /////////////////////////////////////////////////////////////////////////////
