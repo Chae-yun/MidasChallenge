@@ -49,6 +49,15 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	CList<Diagram *> m_list;
+	afx_msg void OnUndo();
+	afx_msg void OnRedo();
+	afx_msg void OnBitmap();
+	afx_msg void OnClass();
+	afx_msg void OnAttribute();
+	afx_msg void OnOperation();
+	afx_msg void OnExtend();
+	afx_msg void OnDepend();
+	afx_msg void OnDelete();
 };
 
 #ifndef _DEBUG  // ClassDiagramView.cpp의 디버그 버전

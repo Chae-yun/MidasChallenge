@@ -28,6 +28,15 @@ BEGIN_MESSAGE_MAP(CClassDiagramView, CView)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CClassDiagramView::OnFilePrintPreview)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
+	ON_COMMAND(ID_UNDO, &CClassDiagramView::OnUndo)
+	ON_COMMAND(ID_REDO, &CClassDiagramView::OnRedo)
+	ON_COMMAND(ID_BITMAP, &CClassDiagramView::OnBitmap)
+	ON_COMMAND(ID_CLASS, &CClassDiagramView::OnClass)
+	ON_COMMAND(ID_ATTRIBUTE, &CClassDiagramView::OnAttribute)
+	ON_COMMAND(ID_OPERATION, &CClassDiagramView::OnOperation)
+	ON_COMMAND(ID_EXTEND, &CClassDiagramView::OnExtend)
+	ON_COMMAND(ID_DEPEND, &CClassDiagramView::OnDepend)
+	ON_COMMAND(ID_DELETE, &CClassDiagramView::OnDelete)
 END_MESSAGE_MAP()
 
 // CClassDiagramView 생성/소멸
@@ -125,3 +134,58 @@ CClassDiagramDoc* CClassDiagramView::GetDocument() const // 디버그되지 않은 버전
 
 
 // CClassDiagramView 메시지 처리기
+
+
+void CClassDiagramView::OnUndo()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+
+}
+
+
+void CClassDiagramView::OnRedo()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+}
+
+
+void CClassDiagramView::OnBitmap()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+}
+
+
+void CClassDiagramView::OnClass()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+}
+
+
+void CClassDiagramView::OnAttribute()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+}
+
+
+void CClassDiagramView::OnOperation()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+}
+
+
+void CClassDiagramView::OnExtend()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+}
+
+
+void CClassDiagramView::OnDepend()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+}
+
+
+void CClassDiagramView::OnDelete()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+}

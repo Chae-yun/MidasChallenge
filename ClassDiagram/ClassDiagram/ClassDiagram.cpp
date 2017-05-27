@@ -88,7 +88,7 @@ BOOL CClassDiagramApp::InitInstance()
 
 	InitContextMenuManager();
 
-	InitKeyboardManager();
+	//InitKeyboardManager();
 
 	InitTooltipManager();
 	CMFCToolTipInfo ttParams;

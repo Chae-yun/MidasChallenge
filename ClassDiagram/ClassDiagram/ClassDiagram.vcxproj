@@ -221,6 +221,7 @@
     <ResourceCompile Include="ClassDiagram.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\add_attribute.ico" />
     <Image Include="res\ClassDiagram.ico" />
     <Image Include="res\ClassDiagramDoc.ico" />
     <Image Include="res\Toolbar.bmp" />

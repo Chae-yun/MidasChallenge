@@ -1,13 +1,6 @@
-﻿  stdafx.cpp
-  MainFrm.cpp
-  DMakeclass.cpp
-  Diagram.cpp
-  DExtendline.cpp
-  DDependline.cpp
-  ClassDiagramView.cpp
-  ClassDiagramDoc.cpp
-  ClassDiagram.cpp
-  ChildFrm.cpp
+﻿  ClassDiagramView.cpp
   코드를 생성하고 있습니다...
-  ClassDiagram.vcxproj -> C:\Users\user\Documents\GitHub\MidasChallenge\ClassDiagram\Debug\ClassDiagram.exe
-  ClassDiagram.vcxproj -> C:\Users\user\Documents\GitHub\MidasChallenge\ClassDiagram\Debug\ClassDiagram.pdb (Partial PDB)
+  건너뛰고 있습니다... (관련된 변경 내용 없음)
+  ClassDiagram.cpp
+  ClassDiagram.vcxproj -> D:\notebook\midas_challenge\MidasChallenge\ClassDiagram\Debug\ClassDiagram.exe
+  ClassDiagram.vcxproj -> D:\notebook\midas_challenge\MidasChallenge\ClassDiagram\Debug\ClassDiagram.pdb (Partial PDB)
