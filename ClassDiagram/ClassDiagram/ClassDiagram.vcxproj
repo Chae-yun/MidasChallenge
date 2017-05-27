@@ -190,6 +190,7 @@
     <ClInclude Include="ClassDiagram.h" />
     <ClInclude Include="ClassDiagramDoc.h" />
     <ClInclude Include="ClassDiagramView.h" />
+    <ClInclude Include="ClassDlg.h" />
     <ClInclude Include="DDependline.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="DExtendline.h" />
@@ -205,6 +206,7 @@
     <ClCompile Include="ClassDiagram.cpp" />
     <ClCompile Include="ClassDiagramDoc.cpp" />
     <ClCompile Include="ClassDiagramView.cpp" />
+    <ClCompile Include="ClassDlg.cpp" />
     <ClCompile Include="Diagram.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="stdafx.cpp">

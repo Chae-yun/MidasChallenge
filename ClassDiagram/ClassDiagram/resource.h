@@ -2,6 +2,7 @@
 // Microsoft Visual C++에서 생성한 포함 파일입니다.
 // ClassDiagram.rc에서 사용되고 있습니다.
 //
+#define IDI_ICON02                      5
 #define IDD_ABOUTBOX                    100
 #define IDP_OLE_INIT_FAILED             100
 #define IDR_POPUP_EDIT                  119
@@ -30,6 +31,31 @@
 #define ID_VIEW_APPLOOK_OFF_2007_AQUA   218
 #define ID_VIEW_APPLOOK_WINDOWS_7       219
 #define IDS_EDIT_MENU                   306
+#define IDI_ICON01                      315
+#define IDI_ICON03                      318
+#define IDI_ICON04                      319
+#define IDI_ICON05                      320
+#define IDI_ICON06                      321
+#define IDI_ICON07                      322
+#define IDI_ICON08                      323
+#define IDI_ICON09                      324
+#define IDI_ICON10                      325
+#define IDI_ICON11                      326
+#define IDI_ICON12                      327
+#define IDI_ICON13                      328
+#define IDD_CLASS_SETTING               329
+#define IDC_CLASS_NAME                  1000
+#define IDC_LIST_AT                     1001
+#define IDC_AT_TYPE                     1003
+#define IDC_AT_NAME                     1004
+#define IDC_LIST_OP                     1005
+#define IDC_AT_ADD                      1006
+#define IDC_AT_DEL                      1007
+#define IDC_OP_NAME                     1008
+#define IDC_OP_PARAM                    1009
+#define IDC_OP_ADD                      1010
+#define IDC_OP_DEL                      1011
+#define IDC_OP_RETURN                   1012
 #define ID_CLASS                        32774
 #define ID_ATTRIBUTE                    32778
 #define ID_OPERATION                    32783
@@ -39,7 +65,6 @@
 #define ID_DEPEND                       32790
 #define ID_UNDO                         32791
 #define ID_REDO                         32793
-#define ID_BUTTON32798                  32798
 #define ID_MOVE                         32798
 
 // Next default values for new objects

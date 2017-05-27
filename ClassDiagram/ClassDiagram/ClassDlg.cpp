@@ -5,6 +5,7 @@
 #include "ClassDiagram.h"
 #include "ClassDlg.h"
 #include "afxdialogex.h"
+#include "ClassDiagramView.h"
 
 
 // CClassDlg 대화 상자입니다.
@@ -59,6 +60,7 @@ void CClassDlg::OnBnClickedAtAdd()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	UpdateData(TRUE);   //Edit Box에 있는 문자열을 변수에 저장
+	//at = m_at_type + " " + m_at_name;
 	m_list_at.AddString(m_at_type + " " + m_at_name);    //리스트상자의 변수에 AddString을 사용하여 문자열을 추가
 	m_at_type = "";
 	m_at_name = "";
@@ -93,4 +95,8 @@ void CClassDlg::OnBnClickedOpDel()
 	int nList = 0;
 	nList = m_list_op.GetCurSel();    //선택된 목록의 인덱스를 리턴한다.
 	m_list_op.DeleteString(nList);
+}
+
+void CClassDlg::SetStringAt(CString &s) {
+	m_list_at.AddString("hhgjgj");
 }

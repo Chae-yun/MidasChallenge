@@ -12,6 +12,8 @@
 #include "ClassDiagramDoc.h"
 #include "ClassDiagramView.h"
 
+#include "ClassDlg.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -40,6 +42,9 @@ BEGIN_MESSAGE_MAP(CClassDiagramView, CView)
 	ON_WM_MOUSEMOVE()
 	ON_WM_LBUTTONDOWN()
 	ON_COMMAND(ID_MOVE, &CClassDiagramView::OnMove)
+//	ON_WM_MBUTTONDBLCLK()
+ON_WM_LBUTTONDBLCLK()
+ON_WM_PAINT()
 END_MESSAGE_MAP()
 
 // CClassDiagramView 생성/소멸
@@ -301,3 +306,29 @@ void CClassDiagramView::OnMove()
 {
 	m_draw_mode = NONE;
 }
+
+
+void CClassDiagramView::OnLButtonDblClk(UINT nFlags, CPoint point)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	m_ptPrev = point;
+
+	if (m_draw_mode == NONE) {
+		POSITION ps = m_list.GetTailPosition();
+		Diagram *diagram;
+		while (ps) {
+			diagram = m_list.GetAt(ps);
+			if (diagram->m_diagram_mode == CLASS_MODE) {
+				DMakeclass *class1 = (DMakeclass*)diagram;
+				if (class1->m_rect.Contains(point.x, point.y)) {
+					//m_class_dlg.SetStringAt(at);
+					m_class_dlg.DoModal();
+				}
+			}
+			m_list.GetPrev(ps);
+		}
+	}
+
+	CView::OnLButtonDblClk(nFlags, point);
+}
+
