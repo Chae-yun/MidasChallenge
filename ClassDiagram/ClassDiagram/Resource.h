@@ -2,6 +2,7 @@
 // Microsoft Visual C++에서 생성한 포함 파일입니다.
 // ClassDiagram.rc에서 사용되고 있습니다.
 //
+#define IDI_ICON02                      5
 #define IDD_ABOUTBOX                    100
 #define IDP_OLE_INIT_FAILED             100
 #define IDR_POPUP_EDIT                  119
@@ -30,6 +31,18 @@
 #define ID_VIEW_APPLOOK_OFF_2007_AQUA   218
 #define ID_VIEW_APPLOOK_WINDOWS_7       219
 #define IDS_EDIT_MENU                   306
+#define IDI_ICON01                      315
+#define IDI_ICON03                      318
+#define IDI_ICON04                      319
+#define IDI_ICON05                      320
+#define IDI_ICON06                      321
+#define IDI_ICON07                      322
+#define IDI_ICON08                      323
+#define IDI_ICON09                      324
+#define IDI_ICON10                      325
+#define IDI_ICON11                      326
+#define IDI_ICON12                      327
+#define IDI_ICON13                      328
 #define ID_CLASS                        32774
 #define ID_ATTRIBUTE                    32778
 #define ID_OPERATION                    32783
@@ -44,7 +57,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        312
+#define _APS_NEXT_RESOURCE_VALUE        329
 #define _APS_NEXT_COMMAND_VALUE         32795
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310

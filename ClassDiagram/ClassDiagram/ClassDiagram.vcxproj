@@ -220,9 +220,25 @@
     <ResourceCompile Include="ClassDiagram.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\01.bmp" />
+    <Image Include="res\01.ico" />
+    <Image Include="res\02.ico" />
+    <Image Include="res\03.ico" />
+    <Image Include="res\04.ico" />
+    <Image Include="res\05.ico" />
+    <Image Include="res\06.ico" />
+    <Image Include="res\07.ico" />
+    <Image Include="res\08.ico" />
+    <Image Include="res\09.ico" />
+    <Image Include="res\10.ico" />
+    <Image Include="res\11.ico" />
+    <Image Include="res\12.ico" />
+    <Image Include="res\13.ico" />
     <Image Include="res\add_attribute.ico" />
+    <Image Include="res\bitmap1.bmp" />
     <Image Include="res\ClassDiagram.ico" />
     <Image Include="res\ClassDiagramDoc.ico" />
+    <Image Include="res\icon1.ico" />
     <Image Include="res\Toolbar.bmp" />
     <Image Include="res\Toolbar256.bmp" />
     <Image Include="UserImages.bmp" />
