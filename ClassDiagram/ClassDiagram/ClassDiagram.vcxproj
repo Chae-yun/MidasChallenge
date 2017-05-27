@@ -30,7 +30,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -190,6 +190,11 @@
     <ClInclude Include="ClassDiagram.h" />
     <ClInclude Include="ClassDiagramDoc.h" />
     <ClInclude Include="ClassDiagramView.h" />
+    <ClInclude Include="DDependline.h" />
+    <ClInclude Include="define.h" />
+    <ClInclude Include="DExtendline.h" />
+    <ClInclude Include="Diagram.h" />
+    <ClInclude Include="DMakeclass.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -200,6 +205,10 @@
     <ClCompile Include="ClassDiagram.cpp" />
     <ClCompile Include="ClassDiagramDoc.cpp" />
     <ClCompile Include="ClassDiagramView.cpp" />
+    <ClCompile Include="DDependline.cpp" />
+    <ClCompile Include="DExtendline.cpp" />
+    <ClCompile Include="Diagram.cpp" />
+    <ClCompile Include="DMakeclass.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

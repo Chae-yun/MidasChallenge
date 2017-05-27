@@ -52,7 +52,7 @@ BOOL CClassDiagramView::PreCreateWindow(CREATESTRUCT& cs)
 
 // CClassDiagramView ±×¸®±â
 
-void CClassDiagramView::OnDraw(CDC* /*pDC*/)
+void CClassDiagramView::OnDraw(CDC* pDC)
 {
 	CClassDiagramDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);

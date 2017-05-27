@@ -49,11 +49,17 @@ CClassDiagramApp theApp;
 
 
 // CClassDiagramApp 초기화
+ULONG_PTR gdiplusToKen;
 
 BOOL CClassDiagramApp::InitInstance()
 {
 	CWinAppEx::InitInstance();
 
+	GdiplusStartupInput gdiplusStartupInput;
+	if (::GdiplusStartup(&gdiplusToKen, &gdiplusStartupInput, NULL) != Ok) {
+		AfxMessageBox("GDI+ 라이브러리의 초기화에 실패했습니다.");
+		return false;
+	}
 
 	// OLE 라이브러리를 초기화합니다.
 	if (!AfxOleInit())
@@ -132,6 +138,7 @@ int CClassDiagramApp::ExitInstance()
 {
 	//TODO: 추가한 추가 리소스를 처리합니다.
 	AfxOleTerm(FALSE);
+	::GdiplusShutdown(gdiplusToKen);
 
 	return CWinAppEx::ExitInstance();
 }

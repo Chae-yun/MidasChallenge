@@ -4,6 +4,10 @@
 
 #pragma once
 
+#include "Diagram.h"
+#include "DDependline.h"
+#include "DExtendline.h"
+#include "DMakeclass.h"
 
 class CClassDiagramView : public CView
 {
@@ -43,6 +47,8 @@ protected:
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	DECLARE_MESSAGE_MAP()
+public:
+	CList<Diagram *> m_list;
 };
 
 #ifndef _DEBUG  // ClassDiagramView.cpp의 디버그 버전
