@@ -15,7 +15,7 @@ public:
 
 		Gdiplus::Color clr;
 		clr.SetFromCOLORREF(RGB(0, 0, 0));
-		Pen pen(Color(clr), 10);
+		Pen pen(Color(clr), 6);
 		pen.SetStartCap(LineCapNoAnchor);
 		pen.SetEndCap(LineCapArrowAnchor);
 		pen.SetDashStyle(DashStyleDash);

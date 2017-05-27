@@ -305,20 +305,21 @@ void CClassDiagramView::AddDiagramList(CPoint point)
 							DExtendline *extendline = new DExtendline;
 							if (class2->m_rect.Y > class1->m_rect.Y) {  // ¾Æ·¡ -> À§
 								if (class2->m_rect.Y < class1->m_rect.Y + class1->m_rect.Height) { //¿·ÀÎ°¡?
-									if (class2->m_rect.X + class2->m_rect.Width  < class1->m_rect.X) { //¿À -> ¿Þ
+									if (class2->m_rect.X < class1->m_rect.X + class1->m_rect.Width) { //¿Þ -> ¿À
 										extendline->SetPoint(
-											class1->m_rect.X,
-											class1->m_rect.Y + (class1->m_rect.Height / 2),
+										
 											class2->m_rect.X + (class2->m_rect.Width),
-											class2->m_rect.Y + (class2->m_rect.Height / 2)
+											class2->m_rect.Y + (class2->m_rect.Height / 2),
+											class1->m_rect.X,
+											class1->m_rect.Y + (class1->m_rect.Height / 2)
 										);
 									}
-									else {  // ¿Þ -> ¿À
+									else {  // ¿À -> ¿Þ
 										extendline->SetPoint(
-											class1->m_rect.X + (class1->m_rect.Width),
-											class1->m_rect.Y + (class1->m_rect.Height / 2),
 											class2->m_rect.X,
-											class2->m_rect.Y + (class2->m_rect.Height / 2)
+											class2->m_rect.Y + (class2->m_rect.Height / 2),
+											class1->m_rect.X + (class1->m_rect.Width),
+											class1->m_rect.Y + (class1->m_rect.Height / 2)
 										);
 
 									}
@@ -335,18 +336,19 @@ void CClassDiagramView::AddDiagramList(CPoint point)
 								if (class1->m_rect.Y < class2->m_rect.Y + class2->m_rect.Height) { //¿·ÀÎ°¡?
 									if (class2->m_rect.X > class1->m_rect.X + class1->m_rect.Width) { //¿À -> ¿Þ
 										extendline->SetPoint(
-											class1->m_rect.X + (class1->m_rect.Width),
-											class1->m_rect.Y + (class1->m_rect.Height / 2),
 											class2->m_rect.X,
-											class2->m_rect.Y + (class2->m_rect.Height / 2)
+											class2->m_rect.Y + (class2->m_rect.Height / 2),
+											class1->m_rect.X + (class1->m_rect.Width),
+											class1->m_rect.Y + (class1->m_rect.Height / 2)
+											
 										);
 									}
 									else { //¿Þ -> ¿À
 										extendline->SetPoint(
-											class1->m_rect.X,
-											class1->m_rect.Y + (class1->m_rect.Height / 2),
 											class2->m_rect.X + (class2->m_rect.Width),
-											class2->m_rect.Y + (class2->m_rect.Height / 2)
+											class2->m_rect.Y + (class2->m_rect.Height / 2),
+											class1->m_rect.X,
+											class1->m_rect.Y + (class1->m_rect.Height / 2)
 										);
 									}
 								}
@@ -390,20 +392,21 @@ void CClassDiagramView::AddDiagramList(CPoint point)
 							DDependline *dependline = new DDependline;
 							if (class2->m_rect.Y > class1->m_rect.Y) {  // ¾Æ·¡ -> À§
 								if (class2->m_rect.Y < class1->m_rect.Y + class1->m_rect.Height) { //¿·ÀÎ°¡?
-									if (class2->m_rect.X + class2->m_rect.Width  < class1->m_rect.X) { //¿À -> ¿Þ
+									if (class2->m_rect.X < class1->m_rect.X + class1->m_rect.Width) { //¿Þ -> ¿À
 										dependline->SetPoint(
-											class1->m_rect.X,
-											class1->m_rect.Y + (class1->m_rect.Height / 2),
+
 											class2->m_rect.X + (class2->m_rect.Width),
-											class2->m_rect.Y + (class2->m_rect.Height / 2)
+											class2->m_rect.Y + (class2->m_rect.Height / 2),
+											class1->m_rect.X,
+											class1->m_rect.Y + (class1->m_rect.Height / 2)
 										);
 									}
-									else {  // ¿Þ -> ¿À
+									else {  // ¿À -> ¿Þ
 										dependline->SetPoint(
-											class1->m_rect.X + (class1->m_rect.Width),
-											class1->m_rect.Y + (class1->m_rect.Height / 2),
 											class2->m_rect.X,
-											class2->m_rect.Y + (class2->m_rect.Height / 2)
+											class2->m_rect.Y + (class2->m_rect.Height / 2),
+											class1->m_rect.X + (class1->m_rect.Width),
+											class1->m_rect.Y + (class1->m_rect.Height / 2)
 										);
 
 									}
@@ -420,18 +423,19 @@ void CClassDiagramView::AddDiagramList(CPoint point)
 								if (class1->m_rect.Y < class2->m_rect.Y + class2->m_rect.Height) { //¿·ÀÎ°¡?
 									if (class2->m_rect.X > class1->m_rect.X + class1->m_rect.Width) { //¿À -> ¿Þ
 										dependline->SetPoint(
-											class1->m_rect.X + (class1->m_rect.Width),
-											class1->m_rect.Y + (class1->m_rect.Height / 2),
 											class2->m_rect.X,
-											class2->m_rect.Y + (class2->m_rect.Height / 2)
+											class2->m_rect.Y + (class2->m_rect.Height / 2),
+											class1->m_rect.X + (class1->m_rect.Width),
+											class1->m_rect.Y + (class1->m_rect.Height / 2)
+
 										);
 									}
 									else { //¿Þ -> ¿À
 										dependline->SetPoint(
-											class1->m_rect.X,
-											class1->m_rect.Y + (class1->m_rect.Height / 2),
 											class2->m_rect.X + (class2->m_rect.Width),
-											class2->m_rect.Y + (class2->m_rect.Height / 2)
+											class2->m_rect.Y + (class2->m_rect.Height / 2),
+											class1->m_rect.X,
+											class1->m_rect.Y + (class1->m_rect.Height / 2)
 										);
 									}
 								}
