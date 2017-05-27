@@ -279,6 +279,7 @@ void CClassDiagramView::AddDiagramList(CPoint point)
 								class2->m_rect.Y, //첫번째 선택 클래스
 								class1->m_rect.X + (class1->m_rect.Width / 2),
 								class1->m_rect.Y + class1->m_rect.Height);//두번째 선택 클래스
+				
 							m_list.AddTail((Diagram *)extendline);
 							Invalidate(FALSE);
 							m_selectcnt = 0;
