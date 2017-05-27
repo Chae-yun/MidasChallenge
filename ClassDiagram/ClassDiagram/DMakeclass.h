@@ -8,6 +8,7 @@ public:
 		m_diagram_mode = CLASS_MODE;
 	};
 	~DMakeclass() {};
+
 	Rect m_rect;
 	void Draw(CDC *MemDC) { //MemDC에 그리는 함수
 		Graphics graphics(*MemDC);
@@ -15,7 +16,7 @@ public:
 		Gdiplus::Color clr;
 		clr.SetFromCOLORREF(RGB(0,0,0));
 		Pen pen(Color(clr), 2);
-		
+
 		graphics.DrawRectangle(&pen, m_rect);
 		graphics.DrawLine(&pen, m_rect.X + (m_rect.Width), m_rect.Y + (m_rect.Height / 3), m_rect.X, m_rect.Y + (m_rect.Height / 3));
 		graphics.DrawLine(&pen, m_rect.X + (m_rect.Width), m_rect.Y + (m_rect.Height * 2 / 3), m_rect.X, m_rect.Y + (m_rect.Height * 2 / 3));

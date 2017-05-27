@@ -186,14 +186,21 @@ CClassDiagramDoc* CClassDiagramView::GetDocument() const // 디버그되지 않은 버전
 // CClassDiagramView 메시지 처리기
 void CClassDiagramView::OnUndo()
 {
-	// TODO: 여기에 명령 처리기 코드를 추가합니다.
-
+	if (m_list.GetCount() > 0) {
+		m_list_backup.AddTail(m_list.GetTail());
+		m_list.RemoveTail();
+		Invalidate(FALSE);
+	}
 }
 
 
 void CClassDiagramView::OnRedo()
 {
-	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	if (m_list_backup.GetCount() > 0) {
+		m_list.AddTail(m_list_backup.GetTail());
+		m_list_backup.RemoveTail();
+		Invalidate(FALSE);
+	}
 }
 
 
