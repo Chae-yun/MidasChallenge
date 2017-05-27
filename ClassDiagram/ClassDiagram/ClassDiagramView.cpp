@@ -214,12 +214,14 @@ void CClassDiagramView::OnOperation()
 void CClassDiagramView::OnExtend()
 {
 	m_draw_mode = EXTEND_MODE;
+	m_selectcnt = 0;
 }
 
 
 void CClassDiagramView::OnDepend()
 {
 	m_draw_mode = DEPEND_MODE;
+	m_selectcnt = 0;
 }
 
 
@@ -281,6 +283,42 @@ void CClassDiagramView::AddDiagramList(CPoint point)
 								class1->m_rect.Y + class1->m_rect.Height);//두번째 선택 클래스
 				
 							m_list.AddTail((Diagram *)extendline);
+							Invalidate(FALSE);
+							m_selectcnt = 0;
+							m_Prev_ps = NULL;
+							break;
+						}
+						else {
+							m_Prev_ps = ps;
+							break;
+						}
+					}
+				}
+			}
+			m_list.GetPrev(ps);
+		}
+	}
+	if (m_draw_mode == DEPEND_MODE) {
+		POSITION ps = m_list.GetTailPosition();
+		Diagram *diagram;
+		while (ps) {
+			diagram = m_list.GetAt(ps);
+			if (diagram->m_diagram_mode == CLASS_MODE) {
+				DMakeclass *class1 = (DMakeclass*)diagram;
+				if (class1->m_rect.Contains(point.x, point.y)) {
+					if (ps != m_Prev_ps) {
+						m_selectcnt++;
+						if (m_selectcnt == 2) {
+							diagram = m_list.GetAt(m_Prev_ps);
+							DMakeclass *class2 = (DMakeclass *)diagram;
+							DDependline *dependline = new DDependline;
+							dependline->SetPoint(
+								class2->m_rect.X + (class2->m_rect.Width / 2),
+								class2->m_rect.Y, //첫번째 선택 클래스
+								class1->m_rect.X + (class1->m_rect.Width / 2),
+								class1->m_rect.Y + class1->m_rect.Height);//두번째 선택 클래스
+
+							m_list.AddTail((Diagram *)dependline);
 							Invalidate(FALSE);
 							m_selectcnt = 0;
 							m_Prev_ps = NULL;
