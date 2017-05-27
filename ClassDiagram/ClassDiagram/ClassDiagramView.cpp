@@ -255,6 +255,11 @@ void CClassDiagramView::OnDepend()
 void CClassDiagramView::OnDelete()
 {
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+	if (m_list.GetCount() > 0) {
+		m_list_backup.AddTail(m_list.GetTail());
+		m_list.RemoveTail();
+		Invalidate(FALSE);
+	}
 }
 
 void CClassDiagramView::OnMouseMove(UINT nFlags, CPoint point)

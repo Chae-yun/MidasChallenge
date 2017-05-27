@@ -99,7 +99,7 @@ BOOL CClassDiagramApp::InitInstance()
 	// 응용 프로그램의 문서 템플릿을 등록합니다.  문서 템플릿은
 	//  문서, 프레임 창 및 뷰 사이의 연결 역할을 합니다.
 	CMultiDocTemplate* pDocTemplate;
-	pDocTemplate = new CMultiDocTemplate(IDR_ClassDiagramTYPE,
+	pDocTemplate = new CMultiDocTemplate(IDR_MAINFRAME,
 		RUNTIME_CLASS(CClassDiagramDoc),
 		RUNTIME_CLASS(CChildFrame), // 사용자 지정 MDI 자식 프레임입니다.
 		RUNTIME_CLASS(CClassDiagramView));

@@ -134,23 +134,21 @@ END
 
 IDR_MAINFRAME_256 TOOLBAR 16, 15
 BEGIN
-    BUTTON      ID_UNDO
-    BUTTON      ID_REDO
-    SEPARATOR
     BUTTON      ID_FILE_NEW
     BUTTON      ID_FILE_OPEN
     BUTTON      ID_FILE_SAVE
     BUTTON      ID_BITMAP
     SEPARATOR
+    BUTTON      ID_UNDO
+    BUTTON      ID_REDO
+    SEPARATOR
     BUTTON      ID_CLASS
-    BUTTON      ID_ATTRIBUTE
-    BUTTON      ID_OPERATION
     BUTTON      ID_EXTEND
     BUTTON      ID_DEPEND
     BUTTON      ID_DELETE
     SEPARATOR
-    BUTTON      ID_APP_ABOUT
     BUTTON      ID_MOVE
+    BUTTON      ID_APP_ABOUT
 END
 
 
@@ -167,39 +165,22 @@ BEGIN
         MENUITEM "열기(&O)...\tCtrl+O",           ID_FILE_OPEN
         MENUITEM "닫기(&C)",                      ID_FILE_CLOSE
         MENUITEM SEPARATOR
-        MENUITEM "인쇄 설정(&R)...",                ID_FILE_PRINT_SETUP
-        MENUITEM SEPARATOR
-        MENUITEM "최근에 사용한 파일",                  ID_FILE_MRU_FILE1, GRAYED
-        MENUITEM SEPARATOR
-        MENUITEM "끝내기(&X)",                     ID_APP_EXIT
     END
-    POPUP "보기(&V)"
+    POPUP "그리기(&D)"
     BEGIN
-        POPUP "도구 모음 및 도킹 창(&T)"
-        BEGIN
-            MENUITEM "<자리 표시자>",                    ID_VIEW_TOOLBAR
-        END
-        MENUITEM "상태 표시줄(&S)",                  ID_VIEW_STATUS_BAR
-        POPUP "응용 프로그램 모양(&A)"
-        BEGIN
-            MENUITEM "Windows 2000(&2)",            ID_VIEW_APPLOOK_WIN_2000
-            MENUITEM "Office XP(&X)",               ID_VIEW_APPLOOK_OFF_XP
-            MENUITEM "Windows XP(&W)",              ID_VIEW_APPLOOK_WIN_XP
-            MENUITEM "Office 2003(&3)",             ID_VIEW_APPLOOK_OFF_2003
-            MENUITEM "Visual Studio 200&5",         ID_VIEW_APPLOOK_VS_2005
-            MENUITEM "Visual Studio 200&8",         ID_VIEW_APPLOOK_VS_2008
-            POPUP "Office 2007(&7)"
-            BEGIN
-                MENUITEM "파랑 스타일(&B)",                  ID_VIEW_APPLOOK_OFF_2007_BLUE
-                MENUITEM "검정 스타일(&L)",                  ID_VIEW_APPLOOK_OFF_2007_BLACK
-                MENUITEM "은색 스타일(&S)",                  ID_VIEW_APPLOOK_OFF_2007_SILVER
-                MENUITEM "바다색 스타일(&A)",                 ID_VIEW_APPLOOK_OFF_2007_AQUA
-            END
-        END
+        MENUITEM "클래스 그리기\tCtrl+Q",             ID_CLASS
+        MENUITEM "상속선 그리기\tCtrl+W",             ID_EXTEND
+        MENUITEM "의존선 그리기\tCtrl+E",             ID_DEPEND
     END
     POPUP "도움말(&H)"
     BEGIN
-        MENUITEM "ClassDiagram 정보(&A)...",      ID_APP_ABOUT
+        MENUITEM "도움말보기\tCtrl+H",               ID_APP_ABOUT
+    END
+    POPUP "도구(T)"
+    BEGIN
+        MENUITEM "실행 취소\tCtrl+Z",               ID_UNDO
+        MENUITEM "되돌리기 \tCtrl+Y",               ID_REDO
+        MENUITEM "지우기\tCtrl+X",                 ID_DELETE
     END
 END
 
@@ -298,20 +279,26 @@ END
 
 IDR_MAINFRAME ACCELERATORS
 BEGIN
-    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
-    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
-    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
-    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL
-    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
-    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
-    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
-    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
-    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
-    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
-    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
-    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
-    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
-    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "E",            ID_DEPEND,              VIRTKEY, CONTROL, NOINVERT
+    "H",            ID_APP_ABOUT,           VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
+    "Q",            id_class,               VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    "W",            ID_EXTEND,              VIRTKEY, CONTROL, NOINVERT
+    "Y",            ID_REDO,                VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_UNDO,                VIRTKEY, CONTROL, NOINVERT
+    "X",            ID_DELETE,              VIRTKEY, CONTROL, NOINVERT
 END
 
 
@@ -543,7 +530,7 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_APP_ABOUT            "프로그램 정보, 버전 번호 및 저작권을 표시합니다.\n정보"
+    ID_APP_ABOUT            "프로그램 사용법을 봅니다\n정보"
     ID_APP_EXIT             "문서를 저장할지를 묻고 응용 프로그램을 끝냅니다.\n끝내기"
 END
 
@@ -637,6 +624,22 @@ END
 STRINGTABLE
 BEGIN
     IDS_EDIT_MENU           "편집"
+END
+
+STRINGTABLE
+BEGIN
+    ID_DELETE               "최근에 그린것을 삭제합니다.\n 삭제하기"
+    ID_BITMAP               "비트맵을 엽니다.\n 비트맵 열기"
+    ID_EXTEND               "상속선을 그립니다.\n상속선 그리기"
+    ID_DEPEND               "의존선을 만듭니다.\n의존선 만들기"
+    ID_UNDO                 "실행을 취소합니다.\n실행 취소"
+    ID_REDO                 "실행을 재개합니다.\n실행 재개"
+    ID_MOVE                 "클래스의 속성을 변경합니다.\n변경"
+END
+
+STRINGTABLE
+BEGIN
+    ID_CLASS                "클래스를 만듭니다.\n클래스 만들기"
 END
 
 #endif    // 한국어(대한민국) resources
