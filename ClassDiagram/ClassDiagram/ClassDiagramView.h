@@ -77,6 +77,8 @@ public:
 	WCHAR* pWideChar;
 	WCHAR * ConvertMultibyteToUnicode(char * pMultibyte);
 	CList<Diagram*> m_list_backup;
+	CString class_name;
+
 };
 
 #ifndef _DEBUG  // ClassDiagramView.cpp의 디버그 버전
