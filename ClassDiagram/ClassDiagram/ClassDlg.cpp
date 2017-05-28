@@ -64,8 +64,9 @@ void CClassDlg::OnBnClickedAtAdd()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	UpdateData(TRUE);   //Edit Box에 있는 문자열을 변수에 저장
-	//at = m_at_type + " " + m_at_name;
-	m_list_at.AddString(m_at_type + " " + m_at_name);    //리스트상자의 변수에 AddString을 사용하여 문자열을 추가
+	CString str;
+	str.Format("%s %s", m_at_type, m_at_name);
+	m_list_at.AddString(str);    //리스트상자의 변수에 AddString을 사용하여 문자열을 추가
 	m_at_type = "";
 	m_at_name = "";
 	UpdateData(FALSE);    //변수에 있는 값을 에디터 상자로 보냄
@@ -85,7 +86,9 @@ void CClassDlg::OnBnClickedOpAdd()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	UpdateData(TRUE);   //Edit Box에 있는 문자열을 변수에 저장
-	m_list_op.AddString(m_op_return + " " + m_op_name + "(" + m_op_param + ")");    //리스트상자의 변수에 AddString을 사용하여 문자열을 추가
+	CString str;
+	str.Format("%s %s(%s)", m_op_return, m_op_name, m_op_param);
+	m_list_op.AddString(str);    //리스트상자의 변수에 AddString을 사용하여 문자열을 추가
 	m_op_return = "";
 	m_op_name = "";
 	m_op_param = "";
@@ -105,21 +108,42 @@ void CClassDlg::OnBnClickedOpDel()
 void CClassDlg::OnBnClickedOk()
 {
 	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
-	int at_len = m_list_at.GetCount();
-	int op_len = m_list_op.GetCount();
-	CString temp;
-
 	at = "";
-	op = "";
+	at_len = m_list_at.GetCount();
+	if (at_len > 0) {
+		CString temp;
 
-	class_name = m_class_name;
-	for (int i = 0; i < at_len; i++) {
-		m_list_at.GetText(i, temp);
-		at += temp;
+		for (int i = 0; i < at_len; i++) { 
+			m_list_at.GetText(i,temp);
+			at += temp+"\n";
+		}
 	}
-	for (int i = 0; i < op_len; i++) {
-		m_list_op.GetText(i, temp);
-		at += temp;
+
+	op = "";
+	op_len = m_list_op.GetCount();
+	if (op_len > 0) {
+		CString temp;
+
+		for (int i = 0; i < op_len; i++) {
+			m_list_op.GetText(i, temp);
+			op += temp + "\n";
+		}
 	}
+
+	
 	CDialog::OnOK();
+}
+
+
+void CClassDlg::GetClassName(CString &class_name)
+{
+	class_name = m_class_name;
+}
+
+void CClassDlg::GetAtList(CString &at_list) {
+	at_list = at;
+}
+
+void CClassDlg::GetOpList(CString &op_list) {
+	op_list = op;
 }

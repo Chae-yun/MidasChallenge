@@ -37,4 +37,9 @@ public:
 	CString class_name;
 	CString at;
 	CString op;
+	void GetClassName(CString &class_name);
+	void GetAtList(CString &at_list);
+	void GetOpList(CString &op_list);
+	int at_len;
+	int op_len;
 };

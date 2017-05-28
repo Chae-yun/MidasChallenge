@@ -487,13 +487,21 @@ void CClassDiagramView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	if (m_draw_mode == NONE) {
 		POSITION ps = m_list.GetTailPosition();
 		Diagram *diagram;
+		BOOL modal;
+
 		while (ps) {
 			diagram = m_list.GetAt(ps);
 			if (diagram->m_diagram_mode == CLASS_MODE) {
 				DMakeclass *class1 = (DMakeclass*)diagram;
 				if (class1->m_rect.Contains(point.x, point.y)) {
-					//m_class_dlg.SetStringAt(at);
-					m_class_dlg.DoModal();
+					modal = m_class_dlg.DoModal();
+
+					m_class_dlg.GetClassName(class1->class_name);
+					m_class_dlg.GetAtList(class1->at_list);
+					m_class_dlg.GetOpList(class1->op_list);
+
+					if (modal == IDOK) 
+						Invalidate(FALSE);
 				}
 			}
 			m_list.GetPrev(ps);

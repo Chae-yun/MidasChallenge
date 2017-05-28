@@ -78,6 +78,7 @@ public:
 	WCHAR * ConvertMultibyteToUnicode(char * pMultibyte);
 	CList<Diagram*> m_list_backup;
 	afx_msg void OnFileSave();
+	CString class_name;
 };
 
 #ifndef _DEBUG  // ClassDiagramView.cpp의 디버그 버전
