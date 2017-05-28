@@ -24,14 +24,15 @@ public:
 	};
 
 	void SetPoint(int startX, int startY, int endX, int endY) {
+
 		m_startPoint.X = startX;
 		m_startPoint.Y = startY;
 		m_endPoint.X = endX;
 		m_endPoint.Y = endY;
 		if (m_startPoint.X > m_endPoint.X)
 			Swap(&m_startPoint, &m_endPoint);
-	}
 
+	}
 	~DDependline() {};
 };
 

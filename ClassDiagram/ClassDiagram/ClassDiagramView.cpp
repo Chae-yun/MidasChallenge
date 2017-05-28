@@ -45,9 +45,13 @@ BEGIN_MESSAGE_MAP(CClassDiagramView, CView)
 //	ON_WM_MBUTTONDBLCLK()
 ON_WM_LBUTTONDBLCLK()
 ON_WM_PAINT()
+ON_COMMAND(ID_FILE_SAVE, &CClassDiagramView::OnFileSave)
 END_MESSAGE_MAP()
 
+bool SaveBMP(CDC* pDC, CRect BitmapSize, int BitCount, LPCTSTR filename);
+
 // CClassDiagramView 생성/소멸
+
 
 CClassDiagramView::CClassDiagramView()
 	: m_ptPrev(0)
@@ -512,4 +516,136 @@ WCHAR * CClassDiagramView::ConvertMultibyteToUnicode(char * pMultibyte)
 	strUnicode.Format("%s", pWideChar);
 
 	return pWideChar;
+}
+
+bool SaveBMP(CDC* pDC, CRect BitmapSize, int BitCount, LPCTSTR filename)
+{
+	CDC memDC;
+	CBitmap Bitmap, *pOldBmp;
+
+	HANDLE handle;
+	HANDLE hDIB;
+	HPALETTE hPal = NULL;
+
+	BITMAP bm;
+	BITMAPINFOHEADER bi;
+	LPBITMAPINFOHEADER lpbi;
+
+	DWORD dwLen;
+
+	/*----- CDC의 내용을 Bitmap으로 전송 ----*/
+	memDC.CreateCompatibleDC(pDC);
+	Bitmap.CreateCompatibleBitmap(pDC, BitmapSize.Width(), BitmapSize.Height());
+	pOldBmp = (CBitmap*)memDC.SelectObject(&Bitmap);
+	memDC.BitBlt(0, 0, BitmapSize.Width(), BitmapSize.Height(), pDC, 0, 0, SRCCOPY);
+	memDC.SelectObject(pOldBmp);
+
+	/*------------------------- 비트멥 헤더를 기록함 -------------------------*/
+	if (hPal == NULL)
+		hPal = (HPALETTE)GetStockObject(DEFAULT_PALETTE);
+
+	GetObject(HBITMAP(Bitmap), sizeof(BITMAP), &bm);
+
+	bi.biSize = sizeof(BITMAPINFOHEADER);
+	bi.biWidth = bm.bmWidth;
+	bi.biHeight = bm.bmHeight;
+	bi.biPlanes = 1;
+	bi.biBitCount = BitCount;
+	bi.biCompression = BI_RGB;
+	bi.biSizeImage = bm.bmWidth * bm.bmHeight * 3;
+	bi.biXPelsPerMeter = 0;
+	bi.biYPelsPerMeter = 0;
+	bi.biClrUsed = 0;
+	bi.biClrImportant = 0;
+
+	int nColors = (1 << bi.biBitCount);
+	if (nColors > 256)
+		nColors = 0;
+
+	dwLen = bi.biSize + nColors * sizeof(RGBQUAD);
+
+	hPal = SelectPalette(pDC->GetSafeHdc(), hPal, FALSE);
+
+	RealizePalette(pDC->GetSafeHdc());
+
+	hDIB = GlobalAlloc(GMEM_FIXED, dwLen);
+
+	lpbi = (LPBITMAPINFOHEADER)hDIB;
+
+	*lpbi = bi;
+
+	GetDIBits(pDC->GetSafeHdc(), HBITMAP(Bitmap), 0, (DWORD)bi.biHeight,
+		(LPBYTE)NULL, (LPBITMAPINFO)lpbi, (DWORD)DIB_RGB_COLORS);
+
+	bi = *lpbi;
+
+	if (bi.biSizeImage == 0)
+		bi.biSizeImage = ((((bi.biWidth * bi.biBitCount) + 31) & ~31) / 8) * bi.biHeight;
+
+	dwLen += bi.biSizeImage;
+
+	if (handle = GlobalReAlloc(hDIB, dwLen, GMEM_MOVEABLE))
+		hDIB = handle;
+
+	lpbi = (LPBITMAPINFOHEADER)hDIB;
+
+	GetDIBits(pDC->GetSafeHdc(), HBITMAP(Bitmap), 0, (DWORD)bi.biHeight,
+		(LPBYTE)lpbi + (bi.biSize + nColors * sizeof(RGBQUAD)),
+		(LPBITMAPINFO)lpbi, (DWORD)DIB_RGB_COLORS);
+
+	BITMAPFILEHEADER hdr;
+
+	hdr.bfType = ((WORD)('M' << 8) | 'B');
+	hdr.bfSize = (DWORD)(GlobalSize(hDIB) + sizeof(hdr));
+	hdr.bfReserved1 = 0;
+	hdr.bfReserved2 = 0;
+	hdr.bfOffBits = (DWORD)(sizeof(hdr) + lpbi->biSize + nColors * sizeof(RGBQUAD));
+
+	char* pBmpBuf;
+	DWORD FileSize;
+	FileSize = (DWORD)(sizeof(hdr) + GlobalSize(hDIB));
+	pBmpBuf = new char[FileSize];
+
+	memcpy(pBmpBuf, &hdr, sizeof(hdr));
+	memcpy(pBmpBuf + sizeof(hdr), lpbi, GlobalSize(hDIB));
+
+	/*--------------------- 실제 파일에 기록함 --------------------------*/
+	FILE *pFile = NULL;
+
+	fopen_s(&pFile, filename, "wb");
+
+	bool bResult = false;
+	if (pFile != NULL)
+	{
+		fwrite(pBmpBuf, FileSize, 1, pFile);
+		fclose(pFile);
+		bResult = true;
+	}
+
+	delete[] pBmpBuf;
+
+	if (hDIB)
+		GlobalFree(hDIB);
+
+	SelectPalette(pDC->GetSafeHdc(), hPal, FALSE);
+
+	return bResult;
+}
+
+void CClassDiagramView::OnFileSave()
+{
+	CClientDC dc(this);
+	CRect rect;
+	GetClientRect(&rect);
+	char name_filter[] = "All Files (*.*)|*.*|BMP Files (*.bmp)|*.bmp|";
+	CFileDialog ins_dlg(FALSE, "bmp", "*.bmp", OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT |
+		OFN_NOCHANGEDIR, name_filter, NULL);
+
+	// 파일 형식 콤보박스에 나열된 필터들 중에서 2번째 항목(*.txt)을 선택한다.
+	ins_dlg.m_ofn.nFilterIndex = 2;
+
+	// 다이얼로그를 띄운다.
+	if (ins_dlg.DoModal() == IDOK) {
+		SaveBMP(&dc, rect, 24, ins_dlg.GetPathName());
+	}
 }
