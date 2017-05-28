@@ -53,7 +53,7 @@ public:
 		delete[] pwsz;
 
 		ptf.X = m_rect.X + 20;
-		ptf.Y = m_rect.Y + 180;
+		ptf.Y = m_rect.Y + 150;
 		sbrush.SetColor(Color(0, 0, 0));
 
 		nLen = op_list.GetLength() + 1;
