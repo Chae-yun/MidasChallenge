@@ -17,7 +17,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// 한국어(대한민국) resources
+// Korean (Korea) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
@@ -170,7 +170,7 @@ BEGIN
     BEGIN
         MENUITEM "클래스 그리기\tCtrl+Q",             ID_CLASS
         MENUITEM "상속선 그리기\tCtrl+W",             ID_EXTEND
-        MENUITEM "의존선 그리기\tCtrl+E",             ID_DEPEND
+        MENUITEM "의존선 그리기\tCtrl+E",             ID_EDIT_CLEAR
     END
     POPUP "도움말(&H)"
     BEGIN
@@ -279,26 +279,25 @@ END
 
 IDR_MAINFRAME ACCELERATORS
 BEGIN
-    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
-    "E",            ID_DEPEND,              VIRTKEY, CONTROL, NOINVERT
+    "Q",            32804,                  VIRTKEY, CONTROL, NOINVERT
     "H",            ID_APP_ABOUT,           VIRTKEY, CONTROL, NOINVERT
+    "X",            ID_DELETE,              VIRTKEY, CONTROL, NOINVERT
+    "E",            ID_DEPEND,              VIRTKEY, CONTROL, NOINVERT
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    "W",            ID_EXTEND,              VIRTKEY, CONTROL, NOINVERT
     "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
     "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL, NOINVERT
     "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL, NOINVERT
-    "Q",            id_class,               VIRTKEY, CONTROL, NOINVERT
     "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
-    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
-    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
-    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
-    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
-    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
-    "W",            ID_EXTEND,              VIRTKEY, CONTROL, NOINVERT
     "Y",            ID_REDO,                VIRTKEY, CONTROL, NOINVERT
-    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
     "Z",            ID_UNDO,                VIRTKEY, CONTROL, NOINVERT
-    "X",            ID_DELETE,              VIRTKEY, CONTROL, NOINVERT
 END
 
 
@@ -642,7 +641,7 @@ BEGIN
     ID_CLASS                "클래스를 만듭니다.\n클래스 만들기"
 END
 
-#endif    // 한국어(대한민국) resources
+#endif    // Korean (Korea) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
